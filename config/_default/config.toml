@@ -3,7 +3,7 @@
 # https://blowfish.page/docs/getting-started/
 
 theme = "blowfish"
-baseURL = "https://www.renocrypt.com/ml"
+baseURL = "https://ml.renocrypt.com"
 defaultContentLanguage = "en"
 languageCode = "en"
 
@@ -16,7 +16,7 @@ summaryLength = 0
 buildDrafts = false
 buildFuture = false
 
-# googleAnalytics = "G-XXXXXXXXX"
+googleAnalytics = "G-HD982YSB33"
 
 [imaging]
 anchor = 'Center'
