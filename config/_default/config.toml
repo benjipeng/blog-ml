@@ -3,7 +3,7 @@
 # https://blowfish.page/docs/getting-started/
 
 theme = "blowfish"
-baseURL = "https://ml.renocrypt.com"
+baseURL = "https://www.renocrypt.com"
 defaultContentLanguage = "en"
 languageCode = "en"
 
