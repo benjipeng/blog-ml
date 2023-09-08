@@ -10,24 +10,24 @@
 # overridden by providing a weight value. The menu
 
 
-# [[main]]
-# name = "Models"
-# pageRef = "posts"
-# weight = 10
-
 [[main]]
-name = "Theory"
-pageRef = "theory"
+name = "Models"
+pageRef = "posts"
 weight = 10
+
+# [[main]]
+# name = "Theory"
+# pageRef = "theory"
+# weight = 10
 
 # [[main]]
 # name = "Parent"
 # weight = 20
 
-[[main]]
-name = "Application"
-pageRef = "examples"
-weight = 50
+# [[main]]
+# name = "Application"
+# pageRef = "examples"
+# weight = 50
 
 # [[main]]
 # name = "C"
