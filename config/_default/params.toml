@@ -17,7 +17,7 @@ enableCodeCopy = false
 
 disableImageOptimization = true
 
-defaultBackgroundImage = "blowfish.jpg" # used as default for background images 
+defaultBackgroundImage = "homepage-hero.jpg" # used as default for background images 
 # defaultFeaturedImage = "IMAGE.jpg" # used as default for featured images in all articles
 
 # highlightCurrentMenuArea = true
@@ -35,7 +35,7 @@ showAppearanceSwitcher = true
 showScrollToTop = true
 
 [homepage]
-layout = "hero"                     # valid options: page, profile, hero, card, background, custom
+layout = "background"               # valid options: page, profile, hero, card, background, custom
 homepageImage = "homepage-hero.jpg" # used in: hero, and card
 showRecent = false
 showRecentItems = 3

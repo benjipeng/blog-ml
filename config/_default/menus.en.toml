@@ -10,26 +10,30 @@
 # overridden by providing a weight value. The menu
 
 
+# [[main]]
+# name = "Models"
+# pageRef = "posts"
+# weight = 10
+
 [[main]]
-name = "Generative"
-pageRef = "posts"
+name = "Theory"
+pageRef = "theory"
 weight = 10
 
-#[[main]]
-#  name = "Parent"
-#  weight = 20
+# [[main]]
+# name = "Parent"
+# weight = 20
 
 [[main]]
-name = "example sub-menu 1"
-parent = "Show Time"
+name = "Application"
 pageRef = "examples"
-weight = 20
+weight = 50
 
-[[main]]
-name = "example sub-menu 2"
-parent = "Show Time"
-pageRef = "tags"
-weight = 20
+# [[main]]
+# name = "C"
+# parent = "Theory"
+# pageRef = "tags"
+# weight = 10
 
 # [[subnavigation]]
 # name = "An interesting topic"
@@ -72,10 +76,10 @@ weight = 20
 pre = "github"
 name = "GitHub"
 url = "https://github.com/benjipeng"
-weight = 30
+weight = 10
 
 [[main]]
 pre = "linkedin"
 name = "LinkedIn"
 url = "https:/https://www.linkedin.com/in/benjiph/"
-weight = 30
+weight = 10
