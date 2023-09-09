@@ -5,7 +5,7 @@
 # Refer to the theme docs for more details about each of these parameters.
 # https://blowfish.page/docs/configuration/#theme-parameters
 
-colorScheme = "noir"
+colorScheme = "Autumn"
 defaultAppearance = "light" # valid options: light or dark
 autoSwitchAppearance = true
 
@@ -17,7 +17,7 @@ enableCodeCopy = false
 
 disableImageOptimization = true
 
-defaultBackgroundImage = "homepage-hero.jpg" # used as default for background images 
+defaultBackgroundImage = "blowfish.jpg" # used as default for background images 
 # defaultFeaturedImage = "IMAGE.jpg" # used as default for featured images in all articles
 
 # highlightCurrentMenuArea = true
@@ -35,7 +35,7 @@ showAppearanceSwitcher = true
 showScrollToTop = true
 
 [homepage]
-layout = "background"               # valid options: page, profile, hero, card, background, custom
+layout = "card"                     # valid options: page, profile, hero, card, background, custom
 homepageImage = "homepage-hero.jpg" # used in: hero, and card
 showRecent = false
 showRecentItems = 3
@@ -72,16 +72,7 @@ showTaxonomies = false
 showAuthorsBadges = false
 showWordCount = true
 showSummary = true
-sharingLinks = [
-  "linkedin",
-  "twitter",
-  "reddit",
-  "pinterest",
-  "facebook",
-  "email",
-  "whatsapp",
-  "telegram",
-]
+# sharingLinks = [ "linkedin", "twitter", "reddit", "pinterest", "facebook", "email", "whatsapp", "telegram"]
 
 [list]
 showHero = true

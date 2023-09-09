@@ -14,9 +14,9 @@ cascade:
 ---
 
 {{< lead >}}
-See what's possible with Blowfish.
+An ode to tensors, a fundamental aspect of many machine learning models
 {{< /lead >}}
 
-Hello this is everything
+Hello this is *ALMOST* everything
 
 ---

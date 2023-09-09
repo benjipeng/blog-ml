@@ -1,6 +1,6 @@
 ---
-title: "Welcome to Blowfish! :tada:"
-description: "This is a demo of the Blowfish theme for Hugo."
+title: "Welcome to RenoCrypt! :tada:"
+description: "AppCubic and RenoCrypt"
 ---
 
 <div class="px-4 py-2 font-bold rounded-md bg-primary-100 dark:bg-primary-900">Mixing the mystique of alchemy with the science of algorithms. Highlighting the enigmatic nature of mathematical matrices used in machine learning.</div>
