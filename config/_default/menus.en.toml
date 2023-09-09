@@ -74,12 +74,12 @@ weight = 20
 
 [[main]]
 pre = "github"
-name = "GitHub"
+name = " "
 url = "https://github.com/benjipeng"
 weight = 10
 
 [[main]]
 pre = "linkedin"
-name = "LinkedIn"
-url = "https:/https://www.linkedin.com/in/benjiph/"
+name = ""
+url = "https://www.linkedin.com/in/benjiph"
 weight = 10
