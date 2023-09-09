@@ -1,14 +1,14 @@
 ---
-title: "Showcase"
-description: "See what's possible with Blowfish."
+title: "Machine Learning Models"
+description: "An ode to tensors, a fundamental aspect of many machine learning models"
 
-showLikes: true
-showViews: true
+showLikes: false
+showViews: false
 
 cascade:
-  showEdit: false
+  showEdit: true
   showReadingTime: false
-  showSummary: false
+  showSummary: true
   showLikes: false
   showViews: false
 ---

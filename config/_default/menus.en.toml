@@ -15,10 +15,10 @@ name = "Models"
 pageRef = "posts"
 weight = 10
 
-# [[main]]
-# name = "Theory"
-# pageRef = "theory"
-# weight = 10
+[[main]]
+name = "Theory"
+pageRef = "theory"
+weight = 10
 
 # [[main]]
 # name = "Parent"
