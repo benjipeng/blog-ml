@@ -1,5 +1,5 @@
 ---
-title: "More Policy Gradient"
+title: "More on Policy Gradient"
 description: "Policy Gradient is a method in reinforcement learning where the policy is directly optimized by estimating the gradient of the expected reward concerning the policy parameters."
 date: 2023-09-10
 series: ["Deep Reinforcement Learning"]
@@ -68,13 +68,31 @@ J^{\theta'}(\theta) =  E _{(s_t, a_t) \sim \pi _{\theta'}}
 [\frac{p _{\theta}(a_t|s_t)}{p _{\theta'}(a_t|s_t)}A^{\theta'}(s_t, a_t)]
 $$
 
-## PPO/TRPO
+## PPO and TRPO
 
 ### Proximal Policy Optimization (PPO)
 
 $$
 J^{\theta'} _{PPO}(\theta) = J^{\theta'} _{PPO}(\theta) - \beta KL(\theta, \theta')
 $$
+
+> Add constraints, wanting \\(\theta\\) to be similar to \\(\theta^{\prime}\\) --- the `behavior` from the `actor` to be similar (**not** the parameter differences).
+
+### PPO Algorithm
+
+- Initial policy parameters \\(\theta^0\\).
+- Then within each iteration
+  - Use \\(\theta^k\\) to interact with `env` and collect a lot of data ( \\( \lbrace s_t, a_t \rbrace \\) ), compute `advantage`.
+  - Find \\(\theta^0\\) that optimizes \\( J _{PPO}(\theta) \\)
+
+#### PPO2
+
+$$
+J^{\theta^k} _{PPO2}(\theta) \approx \sum _{(s_t, a_t)} min( \frac{p _{\theta}(a_t|s_t)}{p _{\theta^k}(a_t|s_t)}A^{\theta^k}(s_t, a_t), \\\
+clip(\frac{p _{\theta}(a_t|s_t)}{p _{\theta^k}(a_t|s_t)}, 1-\epsilon, 1+\epsilon)A^{\theta^k}(s_t, a_t))
+$$
+
+\\(\epsilon\\) is a hyperparameter.
 
 ### Trust Regin Policy Optimization (TRPO)
 
@@ -83,6 +101,6 @@ J^{\theta'} _{TRPO}(\theta) = E _{(s_t, a_t) \sim \pi _{\theta'}}
 [\frac{p _{\theta}(a_t|s_t)}{p _{\theta'}(a_t|s_t)}A^{\theta'}(s_t, a_t)]
 $$
 
-with some KL constraints \\( KL(\theta, \theta') < \delta \\) 
+With some KL constraints \\( KL(\theta, \theta') < \delta \\) 
 
 \\(\\)

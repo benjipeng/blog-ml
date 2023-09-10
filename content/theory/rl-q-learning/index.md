@@ -1,9 +1,9 @@
 ---
-title: "What is Policy Gradient"
-description: "Policy Gradient is a method in reinforcement learning where the policy is directly optimized by estimating the gradient of the expected reward concerning the policy parameters."
+title: "Q-learning"
+description: "Q-learning is a reinforcement learning technique where an agent iteratively learns the value of its actions to navigate towards optimal outcomes in an environment."
 date: 2023-09-09
 series: ["Deep Reinforcement Learning"]
-series_order: 2
+series_order: 4
 showAuthor: false
 seriesOpened: true
 showTableOfContents : true
@@ -13,9 +13,12 @@ heroStyle: background
 
 {{< katex >}}
 
-Policy Gradient is a method in reinforcement learning where the policy is directly optimized by estimating the gradient of the expected reward concerning the policy parameters
+Q-learning, a cornerstone of reinforcement learning, is the quest of an agent to master its environment by discerning the quality of its actions. Through iterative experiences, the agent constructs a map of rewards, forging paths to optimal outcomes.
 
-## Intro
+## Critic
+
+- A critic does not directly determine the action.
+- 
 
 Policy \\(\pi\\) is a network with parameter \\(\theta\\).
 - **Input**: the observation of machine represented as a vector or a matrix.
