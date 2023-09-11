@@ -6,7 +6,7 @@ showLikes: false
 showViews: false
 
 cascade:
-  showEdit: true
+  showEdit: false
   showReadingTime: false
   showSummary: true
   showLikes: false
