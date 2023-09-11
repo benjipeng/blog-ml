@@ -49,9 +49,69 @@ SDXL generally does an *okay* job comparing to its predecessors, my `negative pr
 
 ## Very Simple Camera Control
 
-### Low-Angle
+### Different Angles
+#### Low-Angle
 
 ![low-angle shot simple](imgs/low-angle-simple.jpg)
 
-> A Low-Angle shot of a young adult female, in the front of a modern art gallery, [`{some celebrity names🫣}`], intricate detail, film grain and noise, 8K, cinematic
+> A Low-Angle shot of a young adult female, in the front of a modern art gallery, [`{some notable names so I don't have to describe the figure 🫣}`], intricate detail, film grain and noise, 8K, cinematic
 
+#### Eye-Level
+
+![eye-level shot simple](imgs/eye-level-simple.jpg)
+
+> An eye-level shot of a young adult female, in the front of a modern art gallery, [`{some notable names so I don't have to describe the figure 🫣}`], intricate detail, film grain and noise, 8K, cinematic
+
+#### High-Angle
+
+![high-angle shot simple](imgs/high-angle-simple.jpg)
+
+> Street Style Extreme High-Angle Photo From Below of an adult male, modern art gallery, [`{some notable names so I don't have to describe the figure 🫣}`], intricate detail, film grain and noise, 8K
+
+#### More Choices
+
+{{< alert icon="lightbulb" cardColor="#96B6C5" iconColor="#EEE0C9" textColor="#F1F0E8" >}}
+**There are still few more key words, W.I.P 😬**
+{{< /alert >}}
+
+### Camera Distances
+
+#### Medium shot
+
+![medium shot simple](imgs/medium-shot-simple.jpg)
+
+> eye-level medium shot of a young adult male, modern art gallery, trench coat, [`{some notable names so I don't have to describe the figure 🫣}`], buzz cut hair, smile, model looks at camera, intricate detail, film grain and noise, 8K
+
+#### Closeup shot
+
+![closeup shot simple](imgs/closeup-shot-simple.jpg)
+
+>closeup shot of a young adult female, in the front of a modern art gallery, [`{some notable names so I don't have to describe the figure 🫣}`], intricate detail, film grain and noise, 8K
+
+We may also try `extreme closeup shot`
+
+![ext closeup shot simple](imgs/extreme-closeup-shot-simple.jpg)
+
+>closeup shot of a young adult female, in the front of a modern art gallery, [`{some notable names so I don't have to describe the figure 🫣}`], intricate detail, film grain and noise, 8K
+
+#### Full-body Shot
+
+{{< alert icon="lightbulb" cardColor="#A7727D" iconColor="#F8EAD8" textColor="#F9F5E7" >}}
+**This image is a little ... *complicated*, its actually `full-body shot`, and `Ultra-wide` combined. Also, you may need to adjust the `size` (aspect ratio) of your `canvas` to make sure your human subject is not cropped (a lot of trials an errors) 😬**
+{{< /alert >}}
+
+![full-body shot simple](imgs/fullbody-shot-simple.jpg)
+
+>Ultra-wide angle photo-realistic, A full-body shot of a stylish woman wearing leather boots standing in front of a rainbow neon sign in a modern Tokyo street, black sunglasses,[`{some notable names so I don't have to describe the figure 🫣}`], film grain
+
+## Combined Prompts
+
+![imgs/high-angle-photo-from-above-shot-from-behind](imgs/high-angle-photo-from-above-shot-from-behind.jpg)
+
+> High-fashion high-angle photo from above shot from behind of a woman, shot on Sony a9, natural lighting
+
+![imgs/side-view-low-angle-closeup-photo-from-below](imgs/side-view-low-angle-closeup-photo-from-below.jpg)
+> High-fashion side view low-angle closeup photo from below of a Swedish woman, shot on Sony a9, natural lighting
+
+![extremely-high-angle-photo-from-above-shot-from-behind](imgs/extremely-high-angle-photo-from-above-shot-from-behind.jpg)
+> High-fashion extremely high-angle photo from above shot from behind of an attractive young ethiopian male model, Paris city view, shot on Sony a9, natural lighting
