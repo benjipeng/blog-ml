@@ -1,7 +1,7 @@
 ---
 title: "Q-learning"
 description: "Q-learning is a reinforcement learning technique where an agent iteratively learns the value of its actions to navigate towards optimal outcomes in an environment."
-date: 2023-09-09
+date: 2023-09-10
 series: ["Deep Reinforcement Learning"]
 series_order: 4
 showAuthor: false
@@ -17,8 +17,21 @@ Q-learning, a cornerstone of reinforcement learning, is the quest of an agent to
 
 ## Critic
 
-- A critic does not directly determine the action.
-- 
+- A `critic` does not directly determine the action.
+- Given an actor \\(\pi\\), it evaluates how good \\(\pi\\) is.
+- There is an `actor` called state value function \\(V^{\pi}(s)\\)
+  - When using \\(\pi\\) (to interact with `env`), the *cumulated* reward is expected after visiting state \\( s \\).
+
+> It literally just make a prediction. Having \\( V^{\pi} \\) to look into the state \\( s \\), then yields a `scalar`, \\(V^{\pi}(s)\\).
+
+Output of a critic depends on the evaluated actor.
+
+### Another Critic
+
+- State-action value function \\( Q ^{\pi}(s, a)\\)
+  - When using actor \\( \pi \\), the cumulated reward is assessed after taking action a at state s
+
+\\(\\)
 
 Policy \\(\pi\\) is a network with parameter \\(\theta\\).
 - **Input**: the observation of machine represented as a vector or a matrix.

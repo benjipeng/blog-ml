@@ -1,6 +1,6 @@
 ---
 title: "More on Policy Gradient"
-description: "Policy Gradient is a method in reinforcement learning where the policy is directly optimized by estimating the gradient of the expected reward concerning the policy parameters."
+description: "Off-policy algorithms leverage past experiences, while Proximal Policy Optimization (PPO) and Trust Region Policy Optimization (TRPO) offer advanced strategies for stable policy evolution in reinforcement learning."
 date: 2023-09-10
 series: ["Deep Reinforcement Learning"]
 series_order: 3
@@ -10,6 +10,8 @@ showTableOfContents : true
 showHero: true
 heroStyle: background
 ---
+
+Venturing into the realms of reinforcement learning, Off-policy algorithms open doors to learning from past experiences, while Proximal Policy Optimization (PPO) and Trust Region Policy Optimization (TRPO) present sophisticated techniques to ensure stable policy updates. These methods, while distinct, represent pivotal advancements in efficiently navigating complex environments with enhanced stability.
 
 {{< katex >}}
 
