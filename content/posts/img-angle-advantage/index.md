@@ -17,6 +17,10 @@ Harness the power of generative tools to navigate the nuances of multi-angle per
 
 > "Why a Cubist painting? It's a testament to the art of seeing from many perspectives, the very heart of our journey towards generating flawless photo-realistic images."
 
+{{< alert icon="shield" cardColor="#FF8DC7" iconColor="#FFDDD2" textColor="#F1F0E8" >}}
+`W.I.P. Alert`: **This page is still being worked on 😬 ... A LOT MORE to go!!**
+{{< /alert >}}
+
 ## A Gentle Intro
 
 > If you are new, here, we embrace a tool-agnostic approach, which ensures universality in prompt creation, empowering us to transcend specific platforms while crafting precise visual narratives.
