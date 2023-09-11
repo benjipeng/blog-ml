@@ -6,16 +6,17 @@ draft: false
 showLikes: false
 showViews: false
 
-showDate : false
-showDateUpdated : false
-showHeadingAnchors : false
-showPagination : false
-showReadingTime : false
-showTableOfContents : true
-showTaxonomies : false 
-showWordCount : true
-showSummary : true
-sharingLinks : false
+cascade:
+  showDate : false
+  showDateUpdated : false
+  showHeadingAnchors : false
+  showPagination : false
+  showReadingTime : false
+  showTableOfContents : true
+  showTaxonomies : false 
+  showWordCount : true
+  showSummary : true
+  sharingLinks : false
 
 ---
 
