@@ -2,8 +2,8 @@
 title: Tags
 ---
 
-Blowfish has full support for Hugo taxonomies and will adapt to any taxonomy set up. Taxonomy listings like this one also support custom content to be displayed above the list of terms.
-
-This area could be used to add some extra decriptive text to each taxonomy. Check out the [advanced tag]({{< ref "advanced" >}}) below to see how to take this concept even further.
+{{< alert icon="bell" cardColor="#FF8DC7" iconColor="#FFDDD2" textColor="#F1F0E8" >}}
+We do not have enough tags yet, visit here in the future.
+{{< /alert >}}
 
 ---
