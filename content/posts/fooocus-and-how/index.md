@@ -33,4 +33,6 @@ Whether you're a seasoned artist, a tech enthusiast, or someone standing at the 
 
 **Prompt**: High-fashion high-angle photo from above shot from behind of a woman, Rembrandt Lighting
 
+![High-fashion high-angle photo from above shot from behind of a woman, Rembrandt Lighting](imgs/2.jpg)
+
 **Prompt**: medium-full shot of a person at the end of the universe, High-fashion, Bioluminescence
