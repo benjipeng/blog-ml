@@ -41,7 +41,7 @@ For PC users who has an Nvidia card, installation is rather straightforward. Sim
 
 > This guide was written `09/21/2023`, running Fooocus on `Colab free-tier` is subject to change due to its no-cost nature.
 
-Locate the following section in the readme.md document in Fooocus github repo and click the `Open in Colab` icon.
+Locate the following section inside the `readme.md` document (should just be the project **landing page**) in the `Fooocus Github Repo` ([LINK](https://github.com/lllyasviel/Fooocus)) and click the `Open in Colab` icon.
 
 ![colab-location](imgs/colab-1.jpg)
 
@@ -54,7 +54,7 @@ The `Python` code itself is short and sweet,
 !pip install pygit2==1.12.2
 !python entry_with_update.py --share
 ```
-One benefit for clicking `Open in Colab` is that it automatically select the `free-tier T4 GPU` for you ().
+One benefit for clicking `Open in Colab` is that it automatically select the `free-tier T4 GPU` for you (Otherwise, you can click the `Runtime` tab and then `Change Runtime Type`).
 
 Make sure you are already signed in before you click the start button:
 
