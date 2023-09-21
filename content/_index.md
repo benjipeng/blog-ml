@@ -18,4 +18,4 @@ description: "AppCubic and RenoCrypt"
   </span>
 </div>
 
-Explore the to know more about me. If you like what you see, check out the project on <a target="_blank" href="https://book.renocrypt.com">BookShelf</a> or my <a target="_blank" href="https://futra.renocrypt.com">Futra</a> site at RenoCrypt.
+Explore the to know more about me. If you like what you see, check out the project on <a target="_blank" href="https://books.renocrypt.com">BookShelf</a> or my <a target="_blank" href="https://futur.renocrypt.com">Futra</a> powered by RenoCrypt and ALL the open-source software as well as free digital infrastructure.
