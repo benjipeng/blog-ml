@@ -1,5 +1,5 @@
 ---
-title: "Behind Generative Models [In Progress]"
+title: "Behind Generative Models [In Progress ]"
 description: "Deep Reinforcement Learning (RL) combines deep learning techniques with reinforcement learning to enable agents to learn optimal strategies from large volumes of complex data"
 date: 2023-09-18
 # series: ["Deep Reinforcement Learning"]
