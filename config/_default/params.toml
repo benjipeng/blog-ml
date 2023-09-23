@@ -21,7 +21,7 @@ defaultBackgroundImage = "blowfish.jpg" # used as default for background images
 # defaultFeaturedImage = "IMAGE.jpg" # used as default for featured images in all articles
 
 # highlightCurrentMenuArea = true
-# smartTOC = true
+smartTOC = true
 # smartTOCHideUnfocusedChildren = true
 
 [header]
@@ -47,8 +47,8 @@ layoutBackgroundBlur = false        # only used when layout equals background
 
 [article]
 showDate = true
-showViews = false
-showLikes = false
+showViews = true
+showLikes = true
 showDateUpdated = false
 showAuthor = true
 showHero = false
@@ -73,6 +73,7 @@ showAuthorsBadges = false
 showWordCount = true
 showSummary = true
 # sharingLinks = [ "linkedin", "twitter", "reddit", "pinterest", "facebook", "email", "whatsapp", "telegram"]
+showComments = true
 
 [list]
 showHero = true
@@ -115,13 +116,13 @@ cardView = false
 cardViewScreenWidth = false
 
 [firebase]
-# apiKey = "XXXXXX"
-# authDomain = "XXXXXX"
-# projectId = "XXXXXX"
-# storageBucket = "XXXXXX"
-# messagingSenderId = "XXXXXX"
-# appId = "XXXXXX"
-# measurementId = "XXXXXX"
+apiKey = "AIzaSyBF-w7JV5Pa2UgCbATey4tdH-ZnxAeo6mU"
+authDomain = "renocrypt-com.firebaseapp.com"
+projectId = "renocrypt-com"
+storageBucket = "renocrypt-com.appspot.com"
+messagingSenderId = "1044396120623"
+appId = "1:1044396120623:web:db52a284b05b220452c4da"
+measurementId = "G-CPVMQTXN3H"
 
 [fathomAnalytics]
 # site = "ABC12345"
