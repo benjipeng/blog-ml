@@ -25,9 +25,10 @@ name = "Theory"
 pageRef = "theory"
 weight = 10
 
-# [[main]]
-# name = "Parent"
-# weight = 20
+[[main]]
+name = "Practical"
+pageRef = "practical"
+weight = 20
 
 # [[main]]
 # name = "Application"
