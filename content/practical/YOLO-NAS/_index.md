@@ -79,3 +79,53 @@ Input (416x416x3)
 |
 |--- Output (bounding boxes with class labels and confidence scores)
 ```
+
+YOLO-NAS outputs a set of bounding boxes, each with a class label and a confidence score. Here's a sample output data:
+
+Output Format:
+
+The output of YOLO-NAS is a list of dictionaries, where each dictionary represents a detected object. The dictionary contains the following keys:
+
+class_id: The class label of the detected object (e.g., 0 for person, 1 for car, etc.)
+confidence: The confidence score of the detected object (a value between 0 and 1)
+x, y, w, h: The bounding box coordinates (x, y, width, height) of the detected object
+Sample Output Data:
+
+Here's a sample output data for a single image:
+
+```json
+[
+    {
+        'class_id': 0,  # person
+        'confidence': 0.95,
+        'x': 100,
+        'y': 200,
+        'w': 150,
+        'h': 250
+    },
+    {
+        'class_id': 1,  # car
+        'confidence': 0.92,
+        'x': 300,
+        'y': 150,
+        'w': 200,
+        'h': 150
+    },
+    {
+        'class_id': 2,  # dog
+        'confidence': 0.88,
+        'x': 50,
+        'y': 350,
+        'w': 100,
+        'h': 100
+    }
+]
+```
+
+In this example, the output contains three detected objects: a person, a car, and a dog. Each object has a class label, confidence score, and bounding box coordinates.
+
+Note:
+
+The class labels are represented as integers, where each integer corresponds to a specific class (e.g., 0 for person, 1 for car, etc.).
+The confidence scores are represented as floating-point numbers between 0 and 1, where 1 represents a high confidence and 0 represents a low confidence.
+The bounding box coordinates are represented as integers, where (x, y) represents the top-left corner of the bounding box, and (w, h) represents the width and height of the bounding box, respectively.
