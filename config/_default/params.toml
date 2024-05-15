@@ -37,8 +37,8 @@ showScrollToTop = true
 [homepage]
 layout = "custom"                   # valid options: page, profile, hero, card, background, custom
 homepageImage = "homepage-hero.jpg" # used in: hero, and card
-showRecent = false
-showRecentItems = 3
+showRecent = true
+showRecentItems = 6
 showMoreLink = false
 showMoreLinkDest = "/posts"
 cardView = true
