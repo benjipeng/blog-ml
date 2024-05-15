@@ -6,19 +6,19 @@ series: ["Deep Reinforcement Learning"]
 series_order: 3
 showAuthor: false
 seriesOpened: true
-showTableOfContents : true
+showTableOfContents: true
 showHero: true
 heroStyle: background
 ---
 
-Venturing into the realms of reinforcement learning, Off-policy algorithms open doors to learning from past experiences, while Proximal Policy Optimization (PPO) and Trust Region Policy Optimization (TRPO) present sophisticated techniques to ensure stable policy updates. These methods, while distinct, represent pivotal advancements in efficiently navigating complex environments with enhanced stability.
+Off-policy algorithms open doors to learning from past experiences, while Proximal Policy Optimization (PPO) and Trust Region Policy Optimization (TRPO) ensures stable policy updates.
 
 {{< katex >}}
 
 ## On-policy v.s. Off-policy
 
-- On-policy: The `agent` ( or `actor`) learned and the `actor` interacting with the `environment` is the ***same***.
-- Off-policy: The `actor` learned and the `actor` interacting with the `environment` is ***different***.
+- On-policy: The `agent` ( or `actor`) learned and the `actor` interacting with the `environment` is the **_same_**.
+- Off-policy: The `actor` learned and the `actor` interacting with the `environment` is **_different_**.
 
 > Previous section is `on-policy`
 
@@ -26,15 +26,16 @@ $$
 E _{\tau \sim p _{\theta}(\tau)}[R(\tau) \nabla log p_θ(\tau) ]
 $$
 
-- Use \\(\pi_{\theta}\\) to collect data, when \\(\theta\\) is updated, we have to sample training data again.
-- The goal is to use samples from \\(\pi_{\theta'}\\) to train \\(\theta\\), which means reusing \\(\theta'\\) (or sample data).
+- Use \\(\pi\_{\theta}\\) to collect data, when \\(\theta\\) is updated, we have to sample training data again.
+- The goal is to use samples from \\(\pi\_{\theta'}\\) to train \\(\theta\\), which means reusing \\(\theta'\\) (or sample data).
 
 ### Importance Sampling
 
-\\( E _{x \sim p} [f(x)] \approx 1/N \sum ^N _{i=1} f(x^i) \\) 
-- \\( E _{x \sim p} [f(x)] \\) means given a function \\(f(x)\\), calculate the expected value \\(f(x)\\) of sampling x from distribution p
+\\( E _{x \sim p} [f(x)] \approx 1/N \sum ^N _{i=1} f(x^i) \\)
+
+- \\( E \_{x \sim p} [f(x)] \\) means given a function \\(f(x)\\), calculate the expected value \\(f(x)\\) of sampling x from distribution p
 - \\(x^i\\) is sampled from \\(p(x)\\).
-- But we can not sample from \\(p(x)\\), we only have samples from \\(q (x)\\) (this is the *catch*)
+- But we can not sample from \\(p(x)\\), we only have samples from \\(q (x)\\) (this is the _catch_)
 
 $$
 \int f(x)p(x)dx = \int f(x) \frac{p(x)}{q(x)}q(x)dx \\\
@@ -45,7 +46,7 @@ $$
 
 To calculate variance, \\( \mathrm{VAR[X]} = \mathrm{E[X^2]} - \mathrm{E[X]}^2 \\).
 
-\\( \mathrm{Var} _{x \sim p} \not = \mathrm{Var} _{x \sim q} \\), r.v. with the same **mean** does *not* guarantee same **variance**.
+\\( \mathrm{Var} _{x \sim p} \not = \mathrm{Var} _{x \sim q} \\), r.v. with the same **mean** does _not_ guarantee same **variance**.
 
 > Derivation may be updated in the future, but the difference between \\( \mathrm{Var} _{x \sim p}, \mathrm{Var} _{x \sim q} \\) is the term "p(x)/q(x)" ---> take home message: have to sample enough points
 
@@ -66,7 +67,7 @@ A lot of math warning... Therefore TL;DR, will implement in the future.
 {{< /alert >}}
 
 $$
-J^{\theta'}(\theta) =  E _{(s_t, a_t) \sim \pi _{\theta'}} 
+J^{\theta'}(\theta) =  E _{(s_t, a_t) \sim \pi _{\theta'}}
 [\frac{p _{\theta}(a_t|s_t)}{p _{\theta'}(a_t|s_t)}A^{\theta'}(s_t, a_t)]
 $$
 
@@ -85,7 +86,7 @@ $$
 - Initial policy parameters \\(\theta^0\\).
 - Then within each iteration
   - Use \\(\theta^k\\) to interact with `env` and collect a lot of data ( \\( \lbrace s_t, a_t \rbrace \\) ), compute `advantage`.
-  - Find \\(\theta^0\\) that optimizes \\( J _{PPO}(\theta) \\)
+  - Find \\(\theta^0\\) that optimizes \\( J \_{PPO}(\theta) \\)
 
 #### PPO2
 
@@ -99,10 +100,10 @@ $$
 ### Trust Regin Policy Optimization (TRPO)
 
 $$
-J^{\theta'} _{TRPO}(\theta) = E _{(s_t, a_t) \sim \pi _{\theta'}} 
+J^{\theta'} _{TRPO}(\theta) = E _{(s_t, a_t) \sim \pi _{\theta'}}
 [\frac{p _{\theta}(a_t|s_t)}{p _{\theta'}(a_t|s_t)}A^{\theta'}(s_t, a_t)]
 $$
 
-With some KL constraints \\( KL(\theta, \theta') < \delta \\) 
+With some KL constraints \\( KL(\theta, \theta') < \delta \\)
 
 \\(\\)

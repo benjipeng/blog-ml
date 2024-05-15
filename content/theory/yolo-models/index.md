@@ -31,3 +31,9 @@ YOLOv1 stands out by offering
 - **Real-Time Speed**: YOLOv1 achieves real-time object detection. (Applications like video processing).
 
 **YOLOv1**, designed for speed and efficiency, processes images at 45 frames per second (fps). Its smaller version, Fast YOLO, processes images at 155 fps, achieving double the mean average precision (mAP) of _other_ real-time detectors.
+
+### Unified Detection in YOLOv1
+
+Researcher in YOLOv1 paper unified the separate components of object detection into a single neural network. The network uses features from the entire image to predict each bounding box. It also predicts all bounding boxes across all classes for an image **_simultaneously_**. (The network reasons _globally_ about the full image and all the objects in the image)
+
+![yolov1-fig1](imgs/yolov1-fig1.jpg)
