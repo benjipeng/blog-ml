@@ -14,9 +14,7 @@ cascade:
 ---
 
 {{< lead >}}
-An ode to tensors, a fundamental aspect of many machine learning models
+An _ode_ to tensors, a fundamental aspect of **many machine learning models**
 {{< /lead >}}
-
-Hello this is *ALMOST* everything
 
 ---
