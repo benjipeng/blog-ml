@@ -128,3 +128,23 @@ A mechanism for jointly training on classification and detection data was used i
 Darknet-53, consists of 53 convolutional layers, is used to perform feature extraction. (A _hybrid_ between YOLOv2 `Darknet-19` and residual networks `ResNet`).
 
 ![yolov3-dn](imgs/yolov3-dn.jpg)
+
+### Better Bounding Box Prediction
+
+YOLOv3 predicts an objectness score for each bounding box using logistic regression (p is box prior). (It knows when to ignore if under a certain threshold)
+
+> We predict the **width** and **height** of the box as offsets from cluster centroids. We predict the center coordinates of the box relative to the location of filter application using a `sigmoid` function.
+
+![yolov3-bounding-box](imgs/yolov3-bounding-box.jpg)
+
+YOLOv3 predicts boxes at 3 different scales.
+
+## YOLOv4: Optimal Speed and Accuracy of Object Detection
+
+YOLOv4, introduced by Alexey Bochkovskiy, Chien-Yao Wang, and Hong-Yuan Mark Liao, represents a substantial upgrade.
+
+![yolov4-detector](imgs/yolov4-detector.jpg)
+
+## YOLOv5 and Beyond
+
+Now developed by `Ultralytics`
