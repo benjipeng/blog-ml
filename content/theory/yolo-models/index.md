@@ -53,6 +53,7 @@ YOLOv1 does grid-based detection:
   - Class Probabilities (C): Each grid cell also predicts class probabilities for the object within the bounding box.
 
 ![yolov1-fig3](imgs/yolov1-fig3.jpg)
+The YOLO framework uses a custom network based on the Googlenet architecture.
 
 #### Definition of Confidence in YOLOv1
 
@@ -81,3 +82,49 @@ YOLOv1 uses a single loss function during training and contains three components
 - Localization Loss: Measures the error between the predicted bounding box coordinates and the ground truth coordinates.
 - Confidence Loss: Measures the difference between the predicted confidence scores and the ground truth (1 for objects, 0 for no objects).
 - Classification Loss: Measures the error in class prediction.
+
+## YOLOv2
+
+`YOLOv2`, and its twin model `YOLO9000`, introduced several technical advancements over YOLOv1 and improveed both its speed and accuracy.
+
+> Error analysis of YOLO compared to Fast R-CNN shows that YOLO makes a significant number of localization errors. Furthermore, YOLO has relatively low recall compared to region proposal-based methods. Thus we focus mainly on improving recall and localization while maintaining classification accuracy -- YOLO9000: `Better`, `Faster`, `Stronger`
+
+### Better
+
+#### Batch Normalization
+
+Leads to significant improvements in convergence while eliminating the need for other forms of regularization.
+
+#### High Resolution Classifier
+
+The original YOLO trains the classifier network at 224 × 224. YOLOv2 first fine tune the classification network
+at the full 448 × 448 resolution for 10 epochs on ImageNet, which gives the network time to adjust its filters to work better on higher resolution input
+
+#### Anchor Boxes
+
+Researcher removed the fully connected (FC) layers from YOLO and use anchor boxes to predict bounding boxes.
+
+The original YOLO predicts the coordinates of bounding boxes _directly_ using FC layers on top of the convolutional feature extractor, while models like Faster R-CNN predicts offsets and confidences for
+anchor boxes (region proposal network RPN) with hand-picked priors.
+
+### Faster & Stronger
+
+#### Darknet-19
+
+Darknet-19 (base network of YOLOv2) has 19 convolutional layers and 5 maxpooling layers. Similar to the `VGG` models, researcher use mostly 3 × 3 filters and double the number of channels after every pooling step. **Batch normalization** was also used to stabilize training, speed up convergence, and regularize the model
+
+![yolov2-dn](imgs/yolov2-dn.jpg)
+
+#### Joint classification and detection
+
+A mechanism for jointly training on classification and detection data was used in YOLOv2. During training images from both `detection` and `classification` datasets were mixed. When the network sees an image labelled for detection, it backpropagates based on the **full** YOLOv2 loss function. When it sees a classification image, it only backpropagates loss from its **classification specific part**.
+
+## YOLOv3: An Incremental Improvement
+
+> We present some updates to YOLO! We made a bunch of little design changes to make it better. We also trained this new network that’s pretty swell. It’s a little bigger than last time but more accurate. It’s still fast though, don’t worry. At 320 × 320 YOLOv3 runs in 22 ms at 28.2 mAP, as accurate as SSD but three times faster -- Joseph Redmon and Ali Farhadi.
+
+### A New Network Architecture -- Darknet-53
+
+Darknet-53, consists of 53 convolutional layers, is used to perform feature extraction. (A _hybrid_ between YOLOv2 `Darknet-19` and residual networks `ResNet`).
+
+![yolov3-dn](imgs/yolov3-dn.jpg)
