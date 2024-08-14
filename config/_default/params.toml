@@ -12,7 +12,7 @@ autoSwitchAppearance = true
 enableSearch = true
 enableCodeCopy = true
 
-# mainSections = ["section1", "section2"]
+mainSections = ["posts", "theory"]
 # robots = ""
 
 disableImageOptimization = true
@@ -39,10 +39,10 @@ layout = "custom"                   # valid options: page, profile, hero, card, 
 homepageImage = "homepage-hero.jpg" # used in: hero, and card
 showRecent = true
 showRecentItems = 6
-showMoreLink = false
+showMoreLink = true
 showMoreLinkDest = "/posts"
 cardView = true
-cardViewScreenWidth = false
+cardViewScreenWidth = true
 layoutBackgroundBlur = false        # only used when layout equals background
 
 [article]
