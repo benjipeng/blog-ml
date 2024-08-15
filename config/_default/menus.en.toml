@@ -11,7 +11,7 @@
 
 
 [[main]]
-name = "Usage"
+name = "Posts"
 pageRef = "posts"
 weight = 10
 
@@ -19,11 +19,6 @@ weight = 10
 # name = "MLOps"
 # pageRef = "mlops"
 # weight = 10
-
-[[main]]
-name = "Theory"
-pageRef = "theory"
-weight = 10
 
 # [[main]]
 # name = "Practical"

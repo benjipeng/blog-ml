@@ -6,9 +6,10 @@ date: 2023-09-19
 # series_order: 1
 showAuthor: false
 seriesOpened: true
-showTableOfContents : true
+showTableOfContents: true
 showHero: true
 heroStyle: background
+category: "machine learning application"
 ---
 
 Fooocus isn't just another image-generating tool; it's an innovation reimagined through the lens of Stable Diffusion and Midjourney's finest design lessons. From its unique GPT2-based prompt expansion to its seamless k-diffusion sampling, Fooocus invites you on a journey to redefine image generation.
@@ -17,7 +18,7 @@ Fooocus isn't just another image-generating tool; it's an innovation reimagined 
 
 ## Introduction & Background
 
-> [lllyasviel/Fooocus](https://github.com/lllyasviel/Fooocus) `Focus on prompting and generating` is an *emerging* image generating software based on Gradio.
+> [lllyasviel/Fooocus](https://github.com/lllyasviel/Fooocus) `Focus on prompting and generating` is an _emerging_ image generating software based on Gradio.
 
 In an era where the blend of technology and artistry frequently redefines the horizons of creativity, "Fooocus" emerges as a game-changer in the realm of image generation. Built on the solid foundation of Gradio, Fooocus isn't merely a tool—it's an experience, a revolution that marries the intricacies of generative machine learning with user-centric design.
 
@@ -45,7 +46,7 @@ Locate the following section inside the `readme.md` document (should just be the
 
 ![colab-location](imgs/colab-1.jpg)
 
-The `Python` code itself is short and sweet, 
+The `Python` code itself is short and sweet,
 
 ```python
 %cd /content
@@ -54,6 +55,7 @@ The `Python` code itself is short and sweet,
 !pip install pygit2==1.12.2
 !python entry_with_update.py --share
 ```
+
 One benefit for clicking `Open in Colab` is that it automatically select the `free-tier T4 GPU` for you (Otherwise, you can click the `Runtime` tab and then `Change Runtime Type`).
 
 Make sure you are already signed in before you click the start button:
@@ -61,9 +63,9 @@ Make sure you are already signed in before you click the start button:
 ![colab-play](imgs/colab-2.jpg)
 
 You may get a `Warning: This notebook was not authored by Google`, its just some standard warning you can simply dismiss it by `Run Anyway`.
-***Be paaaaaatient on Fooooooocus***, it may take a while because it downloads `SD_XL` and `SD_XL_refiner` models (you should see a lot of outputs in your `Colab Notebook`).
+**_Be paaaaaatient on Fooooooocus_**, it may take a while because it downloads `SD_XL` and `SD_XL_refiner` models (you should see a lot of outputs in your `Colab Notebook`).
 
-Now, locate the `public URL` that looks like the following and click (our links will look different but as long as it ends with `gradio.io`): 
+Now, locate the `public URL` that looks like the following and click (our links will look different but as long as it ends with `gradio.io`):
 
 ![colab-link-out](imgs/colab-3.jpg)
 
@@ -89,7 +91,7 @@ Ended up getting these two, not bad, isn't it?
 
 Click the `Advanced` checkbox. Congratulations, you have unlocked **a new achievement**, with `Setting`, `Style`, and `Advanced` tabs. Most of settings are straightforward except for the `Advanced` tab, it may be a little bit overwhelming for us newcomers. Simply Fooocus on tweaking parameters in `Setting` and `Style`, then go back to their documentation to know more about those `Advanced` options.
 
-The example below, *ONLY* parameters from the `Setting` tab are changed (now we have `4`, `Quality` robots with some `Negative Prompts`).
+The example below, _ONLY_ parameters from the `Setting` tab are changed (now we have `4`, `Quality` robots with some `Negative Prompts`).
 
 ![fooocus-3](imgs/fooocus-3.jpg)
 
@@ -101,7 +103,7 @@ On the other hand, you can retrieve the images from your `Colab Notebook Instanc
 
 ![fooocus-save](imgs/fooocus-save.jpg)
 
-> You can get more important information from `log.html`. 
+> You can get more important information from `log.html`.
 
 ## Other Sample Images
 
@@ -114,7 +116,6 @@ On the other hand, you can retrieve the images from your `Colab Notebook Instanc
 ![High-fashion high-angle photo from above shot from behind of a woman, Rembrandt Lighting](imgs/2.jpg)
 
 **Prompt**: medium-full shot of a person at the end of the universe, High-fashion, Bioluminescence
-
 
 {{< alert icon="wand-magic-sparkles" cardColor="#82A0D8" iconColor="#ECEE81" textColor="#FDF4F5" >}}
 `Stay tuned for more in-depth analysis and updates on Fooocus; this is just the beginning of our comprehensive exploration.`
