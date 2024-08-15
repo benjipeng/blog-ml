@@ -1,7 +1,7 @@
 languageCode = "en"
 languageName = "English"
 weight = 1
-title = "Matrix Alchemy @RenoCrypt"
+title = "Matrix Alchemy - RenoCrypt"
 
 [params]
 displayName = "EN"
@@ -10,8 +10,8 @@ rtl = false
 dateFormat = "2 January 2006"
 logo = "img/logo.png"
 secondaryLogo = "img/secondary-logo.png"
-description = "Mixing the mystique of alchemy with the science of algorithms, AppCubic & RenoCrypt"
-copyright = ":hugging_face: Copy, _right?_ :thinking_face:"
+description = "Matrix Alchemy by AppCubic & RenoCrypt is where machine learning, app development, and the psychology of technology converge in insightful, technical perspectives."
+copyright = "🤗 Copy, _right?_ 🧐"
 
 [author]
 name = "The Alchemist at RenoCrypt"

@@ -7,6 +7,8 @@ seriesOpened: true
 showTableOfContents: true
 showHero: true
 heroStyle: background
+url: "/various-yolo-versions-and-differences/"
+tags: ["machine learning", "computer vision"]
 ---
 
 {{< katex >}}
