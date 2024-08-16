@@ -47,16 +47,62 @@ OpenMM Lab
 
 Open Google Colab and start a new notebook.
 
+{{< badge >}}
+Run in Colab
+{{< /badge >}}
+<br>
+{{< alert icon="mug-hot" cardColor="#EF9C66" iconColor="#78ABA8" textColor="#f1faee" >}}
+OpenMM is _community driven_, there may be some inconsistencies in their documentation
+{{< /alert >}}
+
+Recent Google Colab has a built-in `torch`:`Version: 2.3.1+cu121` and `CUDA 12.2`, it should generally work with the following steps
+
+Start with
+
+1. `!pip3 install -q openmim` in its own cell because the kernel may _restart_ after you run, simply **_re-run_** it and the following lines should work
+
+2. Then, run the folowing two lines. `mmcv` may actually installed with a version not fully compatible with `2.2.0`, but its okay, simply address that in the next steps.
+
+   ```python
+   !mim install -q mmengine
+   !mim install -q mmcv
+   ```
+
+   lower version of `mmcv` may not work, due to the newer versions of the default `python` and `torch` in colab.
+
+3. Try to build the `mmdetect` and `mmpose` from its source, therefore clone their repos. In another cell, run the following.
+
+   ```python
+   !git clone https://github.com/open-mmlab/mmdetection.git
+   !git clone https://github.com/open-mmlab/mmpose.git
+   ```
+
+   {{< github repo="open-mmlab/mmdetection" >}}
+   {{< github repo="open-mmlab/mmpose" >}}
+
+4. Do a _Editable Installation_ (`-e`) for `mmdetect` and `mmpose`.
+
+   1. [You may no longer need it if more updates take place] Visit `(/comtent)/mmdetection/mmdet/` folder. Inside `__init__.py` change `'2.2.0'` in the line `mmcv_maximum_version = '2.2.0'` (should be line 9) into `'2.2.1` and `ctrl+s` or `command+s` to save.
+   2. Then run the following to install.
+
+      ```python
+      !pip install -q -e ./mmdetection
+      !pip install -q -r ./mmpose/requirements.txt
+      !pip install -q -e ./mmpose
+      ```
+
+{{< alert >}}
+**Warning!** May see some kind of `mmdet.apis modules not found` error during runs in Colab, likely due to `sys.path` not having the correct items in, run:
+
 ```python
-# Install MMDetection dependencies
-!pip install -U openmim
-!mim install mmdet
+import sys
+print(sys.path)
+sys.path.append('/content/mmdetection')
+sys.path.append('/content/mmpose')
+```
 
-# Install MMCV (a foundational library for OpenMMLab)
-!pip install mmcv-full
+{{< /alert >}}
 
-# Install additional dependencies
-!pip install -U torch torchvision
-!pip install -U pycocotools
+```
 
 ```
