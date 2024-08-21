@@ -18,6 +18,120 @@ slug: "an-in-depth-look-at-leading-computer-vision-models"
 
 As computer vision continues to evolve, understanding the various machine learning models driving this technology is crucial. We explore the most impactful models, highlighting key innovations.
 
+## Convolutional Neural Networks (CNN)-based
+
+CNN are used to extract features from images (and videos), employing convolutions as their primary operator.
+
+{{< figure
+    src="https://www.pinecone.io/_next/image/?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fvr8gru94%2Fproduction%2F7d76c907c2df91eb7dc5111cc7c27caae7bad1c1-901x440.png&w=3840&q=75"
+    alt="Typical architecture of a CNN"
+    caption="A typical architecture of a CNN, credit to [pinecone.io](https://www.pinecone.io/learn/series/image-search/imagenet/)">}}
+
+### AlexNet
+
+Designed by Alex Krizhevsky in collaboration with Ilya Sutskever and Geoffrey Hinton (_University of Toronto_), AlexNet ([ImageNet Classification with Deep Convolutional Neural Networks](https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html), NIPS 2012) marks a breakthrough in deep learning.
+
+{{< figure
+    src="https://www.pinecone.io/_next/image/?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fvr8gru94%2Fproduction%2F511d51bd1d1ec3b7155250bf7e53cfa6cb52f215-1339x503.png&w=3840&q=75"
+    alt="Network architecture of AlexNet"
+    caption="Network architecture of AlexNet, credit to [pinecone.io](https://www.pinecone.io/learn/series/image-search/imagenet/)">}}
+
+AlexNet model consisted of 8 layers: 5 conv layers followed by 3 fully-connected (FC) linear layers (Rectified Linear Unit `ReLU` as activation functions). A 1000-node softmax was used to produce the 1000-label classification (a _probability distribution_ over the 1000 classes) for ImageNet.
+
+### GoogLeNet
+
+GoogLeNet, aka Inception-v1, was for ILSVRC 2014 and CVPR 2015 [Going deeper with convolutions](https://ar5iv.labs.arxiv.org/html/1409.4842v1) based on the Inception architecture. An `Inception Module` is an image model block approximates an _optimal_ local sparse structure in a CNN, allowing the network to extract features at **multiple scales simultaneously**.
+
+{{< gallery >}}
+<img src="https://ar5iv.labs.arxiv.org/html/1409.4842/assets/x3.png" class="grid-w40" />
+<img src="https://ar5iv.labs.arxiv.org/html/1409.4842/assets/x4.png" class="grid-w40" />
+<img src="https://ar5iv.labs.arxiv.org/html/1409.4842/assets/x5.png" class="grid-w10" />
+{{< /gallery >}}
+
+GoogLeNet has _parallel convolution layers_ of different kernel sizes (`1x1`, `3x3`, `5x5`) as well as _a max pooling_ layer, with the outputs _concatenated_ before being passed to the next layer. The full GoogLeNet architecture consists of 22 layers deep.
+
+#### GoogLENet v2
+
+Or Inception-v2, comes from [Rethinking the Inception Architecture for Computer Vision](https://ar5iv.labs.arxiv.org/html/1512.00567).
+
+{{< gallery >}}
+<img src="https://ar5iv.labs.arxiv.org/html/1512.00567/assets/x1.png" class="grid-w40" />
+<img src="https://ar5iv.labs.arxiv.org/html/1512.00567/assets/x3.png" class="grid-w40" />
+
+<!-- <img src="https://ar5iv.labs.arxiv.org/html/1409.4842/assets/x5.png" class="grid-w10" /> -->
+
+{{< /gallery >}}
+
+- Mini-network (3 x 3) replacing the 5 × 5 convolutions, should be around 28% reduction in calculation `(5x5 - 3x3 - 3x3)/ 5x5` (more about convolution, see [Simple Convolution Operation](https://calvinfeng.gitbook.io/machine-learning-notebook/supervised-learning/convolutional-neural-network/convolution_operation)).
+- Authors also found an `nxn` conv can be replaced by an `1 x n` followed by an `n x 1` (medium-sized feature maps).
+
+### Visual Geometry Group (VGG)
+
+VGG is a convolutional neural network architecture proposed by researchers (Simonyan _et al._ [Very Deep Convolutional Networks for Large-Scale Image Recognition, ICLR 2015](https://arxiv.org/abs/1409.1556v6)) from the University of Oxford. VGG shined at the ImageNet Large Scale Visual Recognition Challenge, [ILSVRC](https://www.image-net.org/about.php)
+
+{{< gallery >}}
+<img src="https://datascientest.com/de/files/2021/04/illu_VGG_Plan-de-travail-1.png" class="grid-w33" />
+<img src="https://datascientest.com/de/files/2021/04/illu_VGG-02.png" class="grid-w33" />
+<img src="https://viso.ai/wp-content/uploads/2021/10/how-vgg-works-convolutional-neural-network.jpg" class="grid-w33" />
+{{< /gallery >}}
+
+Popular **VGG-16** or **VGG-19** consists of 16 or 19 convolutional layers respectively.
+
+- **Input**: VGG takes in an image input size of 224×224. Creators cropped out the center 224×224 patch in each image for the ImageNet competition.
+- **Convolutional Layers**: VGG uses 3x3 conv layers (minimal receptive field) as well as 1×1 conv filters (linear transformation).
+  - ReLU (from AlexNet, training time reduction than sigmoid) is also used.
+  - Stride (the number of pixel shifts over the input matrix) is fixed at 1 pixel, keeping the spatial resolution preserved.
+- **Hidden Layers**: Use ReLU.
+- **Fully-Connected** (FC) Layers: Has 3 FC layers. The first two each has 4096 channels, and the third has 1000 channels.
+
+### Residual Networks (ResNets)
+
+Introduced by _He et al._ [Deep Residual Learning for Image Recognition, CVPR 2016](https://ar5iv.labs.arxiv.org/html/1512.03385v1), ResNets were designed to address the issue where deeper network has higher training error, and thus test error (_first image_ in the gallery below). Likely due to the gradient vanishing problem (limit for small floating number stored in each tensor) from back propagation for deeper networks.
+
+{{< gallery >}}
+<img src="https://ar5iv.labs.arxiv.org/html/1512.03385/assets/x1.png" class="grid-w40" />
+<img src="https://ar5iv.labs.arxiv.org/html/1512.03385/assets/x2.png" class="grid-w33" />
+<img src="https://ar5iv.labs.arxiv.org/html/1512.03385/assets/x3.png" class="grid-w10" />
+{{< /gallery >}}
+
+ResNets introduce a _deep residual learning_ framework (second image in the gallery above). _Shorting_ some of the layers for better back propagation and yields better performance.
+
+#### ResNeXt
+
+Introduced in [Aggregated Residual Transformations for Deep Neural Networks](https://ar5iv.labs.arxiv.org/html/1611.05431v2). Idea: more independent heads during learning results in better performance.
+
+{{< figure
+    src="https://ar5iv.labs.arxiv.org/html/1611.05431/assets/x1.png"
+    alt="A block of ResNeXt"
+    caption="**Left**: A block of ResNet. **Right**: A block of ResNeXt with cardinality=32, with roughly the same complexity. A layer is shown as `(# in channels, filter size, # out channels)`.">}}
+
+Here is the performance (from `Figure 5`):
+
+{{< gallery >}}
+<img src="https://ar5iv.labs.arxiv.org/html/1611.05431/assets/x5.png" class="grid-w50" />
+<img src="https://ar5iv.labs.arxiv.org/html/1611.05431/assets/x6.png" class="grid-w50" />
+{{< /gallery >}}
+
+> Training curves on ImageNet-1K. `Left`: ResNet/ResNeXt-50 with preserved complexity ( ~4.1 billion FLOPs, ~25 million parameters); `Right`: ResNet/ResNeXt-101 with preserved complexity ( ~7.8 billion FLOPs, ~44 million parameters).
+
+### DenseNet
+
+Introduced in [Densely Connected Convolutional Networks, CVPR 2017](https://ar5iv.labs.arxiv.org/html/1608.06993v5), a DenseNet is a type of convolutional neural network uses _dense_ connections between layers through Dense Blocks.
+
+> To ensure maximum information flow between layers in the network, we connect **all** layers (with matching feature-map sizes) directly with each other. To preserve the feed-forward nature, each layer obtains additional inputs from **all** preceding layers and passes on its own feature-maps to **all** subsequent layers
+
+{{< gallery >}}
+<img src="https://ar5iv.labs.arxiv.org/html/1608.06993/assets/x1.png" class="grid-w40" />
+<img src="https://ar5iv.labs.arxiv.org/html/1608.06993/assets/x2.png" class="grid-w60" />
+<img src="https://ar5iv.labs.arxiv.org/html/1608.06993/assets/x3.png" class="grid-w60" />
+{{< /gallery >}}
+
+### EfficientNet
+
+EfficientNet [EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks](https://ar5iv.labs.arxiv.org/html/1905.11946v5) is a CNN architecture and scaling method that **uniformly** scales **all** dimensions of `depth/width/resolution` using a compound coefficient
+
+[EfficientNet](https://ar5iv.labs.arxiv.org/html/1905.11946/assets/x2.png)
+
 ## Stacked Hourglass Networks
 
 Stacked Hourglass Networks are introduced by Newell et al. in [Stacked Hourglass Networks for Human Pose Estimation](https://arxiv.org/pdf/1603.06937v2)
@@ -45,7 +159,7 @@ As a GPT-V alternative, researchers _(Haotian Liu, Chunyuan Li , Qingyang Wu and
 
 {{< figure
     src="https://production-media.paperswithcode.com/methods/new_teaser_TMZlD2J.jpg"
-    alt="Abstract purple artwork"
+    alt="FPN comparing to others"
     caption="*Figure 1* from the original paper [by Belongie2 et al.](https://arxiv.org/pdf/1612.03144v2). (a) - (c) are older methods. **(a)** uses an image pyramid to build a feature pyramid (image at different scales). Features are computed (via CNN) on each of the image scales independently, which is slow. **(b)** single scale feature (like a VGG16), losing critical info. **(c)** is like sampling over CNN **(d)** FPN shares similarity between b and c, but multiple features at different scales got combined -- features goes through some down-sampling and provide some *feedbacks*, like BLSTM" >}}
 
 FPN is used in a lot of further development including faster R-CNN, Mask R-CNN, Single-Shot Detector (SSD), YOLO
@@ -103,3 +217,18 @@ class="grid-w33"/>
 {{< /gallery >}}
 
 DINO uses `mixed query selection`. Also `look forward twice` (adding more connection for back-propagation), achieving great performance (DINO is around 500 epochs)
+
+## Vision Transformer
+
+From [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://ar5iv.labs.arxiv.org/html/2010.11929v2)
+
+{{< gallery >}}
+<img src="https://ar5iv.labs.arxiv.org/html/2010.11929/assets/x1.png"
+class="grid-w33"/>
+<img src="https://ar5iv.labs.arxiv.org/html/2010.11929/assets/x6.png" class="grid-w33" />
+{{< /gallery >}}
+
+{{< figure
+    src=""
+    alt="ViT overview"
+    caption="Model overview of ViT" >}}

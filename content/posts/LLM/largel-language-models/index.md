@@ -14,4 +14,26 @@ tags: ["large language model", "machine learning", "machine learning models"]
 slug: "understanding-key-insights-and-trends-in-large-language-models"
 ---
 
+# Understanding Key Insights and Trends in Large Language Models
+
 Large Language Models (LLMs) are revolutionizing natural language processing (NLP) by enabling machines to understand and generate human-like text _(or even beyond)_. In this article, we explore key LLMs, their capabilities, and their impact on various applications.
+
+## General Language Model Pretraining with Autoregressive Blank Infilling
+
+[General Language Model Pretraining with Autoregressive Blank Infilling](https://ar5iv.labs.arxiv.org/html/2103.10360v2)
+
+## Chain-of-Thought (CoT) Prompting
+
+By asking LLM to solve complex reasoning tasks in a step-wise manner, CoT enhances the reasoning abilities of Large Language Models (LLMs)
+
+## Knowledge Distillation
+
+Knowledge distillation, introduced in [Distilling the Knowledge in a Neural Network](https://arxiv.org/pdf/1503.02531v1), transfers knowledge from a large model to a smaller one (large models may have large capacity but not fully utilized).
+
+![simple-knowledge-disllation](https://hkalabs.com/wp-content/uploads/2023/09/networkIllustrationS.png)
+
+### Data-efficient Image Transformer (DeiT)
+
+A DeiT is a type of Vision Transformer (ViT) for image classification tasks, by
+token distillation via a teacher-student strategy on ImageNet (10M+). Work before that (ViT for classification uses a private labelled image dataset JFT-300M)
+![performance-of-deit](https://ar5iv.labs.arxiv.org/html/2012.12877/assets/x1.png)
