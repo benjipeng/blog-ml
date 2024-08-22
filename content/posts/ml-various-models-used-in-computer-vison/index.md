@@ -128,9 +128,80 @@ Introduced in [Densely Connected Convolutional Networks, CVPR 2017](https://ar5i
 
 ### EfficientNet
 
-EfficientNet [EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks](https://ar5iv.labs.arxiv.org/html/1905.11946v5) is a CNN architecture and scaling method that **uniformly** scales **all** dimensions of `depth/width/resolution` using a compound coefficient
+EfficientNet [EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks](https://ar5iv.labs.arxiv.org/html/1905.11946v5) is a CNN architecture and scaling method that **uniformly** scales **all** dimensions of `depth/width/resolution` using a compound coefficient (huge amount of computational power).
 
 [EfficientNet](https://ar5iv.labs.arxiv.org/html/1905.11946/assets/x2.png)
+
+## Vision Transformer (ViT)
+
+From [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://ar5iv.labs.arxiv.org/html/2010.11929v2)
+
+{{< gallery >}}
+<img src="https://ar5iv.labs.arxiv.org/html/2010.11929/assets/x1.png"
+class="grid-w33"/>
+<img src="https://ar5iv.labs.arxiv.org/html/2010.11929/assets/x6.png" class="grid-w33" />
+{{< /gallery >}}
+
+### Vision-and-Language Transformer (ViLT)
+
+[ViLT: Vision-and-Language Transformer Without Convolution or Region Supervision](https://ar5iv.labs.arxiv.org/html/2102.03334v2), ICML(International Conference on Machine Learning) 2021.
+
+![ViLT overview](https://ar5iv.labs.arxiv.org/html/2102.03334/assets/x6.png "Model overview: A large transformer putting in word embedding and image imbedding with *(directly adding)* positional encoding.")
+
+{{< gallery >}}
+<img src="https://ar5iv.labs.arxiv.org/html/2102.03334/assets/x2.png" class="grid-w25"/>
+<img src="https://ar5iv.labs.arxiv.org/html/2102.03334/assets/x3.png" class="grid-w25"/>
+<img src="https://ar5iv.labs.arxiv.org/html/2102.03334/assets/x4.png" class="grid-w20"/>
+<img src="https://ar5iv.labs.arxiv.org/html/2102.03334/assets/x5.png" class="grid-w20"/>
+{{< /gallery >}}
+
+The article also mentioned 4 categories of vision-and-language models (`VE`, `TE`, and `MI` are _short_ for `visual embedder`, `textual embedder`, and `modality interaction`, respectively.)
+
+### BERT Pre-Training of Image Transformers (BEiT)
+
+[BEiT: BERT Pre-Training of Image Transformers](https://ar5iv.labs.arxiv.org/html/2106.08254v2), ICLR 2022. (Bidirectional Encoder Representations from Transformers `BERT`, from ACL 2019, is actually a language model)
+
+![BEiT](https://ar5iv.labs.arxiv.org/html/2106.08254/assets/x1.png "Overview of BEiT pre-training. Masked image patches + linearize + positional embedding, some knowledge distillation presented too.")
+
+[VL-BEiT: Generative Vision-Language Pretraining](https://ar5iv.labs.arxiv.org/html/2206.01127v2), is a bidirectional multimodal Transformer learned by generative pretraining.
+
+![VL-BEiT](https://ar5iv.labs.arxiv.org/html/2206.01127/assets/x1.png "VL-BEiT is pretrained by masked prediction on both monomodal and multimodal data with a shared Transformer ,like `VL` + `BEiT`.")
+
+#### Masked Autoencoders (MAE)
+
+[Masked Autoencoders Are Scalable Vision Learners](https://ar5iv.labs.arxiv.org/html/2111.06377), CVPR 2022. (strictly speaking, NOT ViT)
+
+{{< figure
+    src="https://ar5iv.labs.arxiv.org/html/2111.06377/assets/x1.png"
+    alt="Figure 1: MAE architecture"
+    caption="**Figure 1**: MAE architecture. During pre-training, a large random subset of image patches (*e.g*., 75%) is masked out. The encoder is applied to the small subset of visible patches. Mask tokens are introduced after the encoder, and the full set of encoded patches and mask tokens is processed by a small decoder that reconstructs the original image in pixels. After pre-training, the decoder is discarded and the encoder is applied to uncorrupted images (full sets of patches) for recognition tasks.">}}
+
+### Contrastive Language-Image Pre-training (CLIP)
+
+Released by OpenAI from [Learning Transferable Visual Models From Natural Language Supervision](https://ar5iv.labs.arxiv.org/html/2103.00020v1). CLIP _jointly_ trains an `image encoder` and a `text encoder` to predict the correct pairings of a batch of (image, text) training examples, and was trained from scratch on a dataset of 400 million (image, text) pairs.
+
+{{< github repo="OpenAI/CLIP" >}}
+
+> Contrastive learning is a self-supervised learning approach where the model learns to differentiate between similar and dissimilar data points. The core idea is to bring similar data points (positives) closer together in the feature space while pushing dissimilar ones (negatives) apart.
+
+{{< figure
+    src="https://raw.githubusercontent.com/openai/CLIP/main/CLIP.png"
+    alt="clip img figure 1"
+    caption="**Figure 1** Summary of CLIP approach. CLIP `jointly` trains an image encoder and a text encoder to predict the correct pairings of a batch of (image, text) training examples, while standard image models **jointly** train an image feature extractor and a linear classifier to predict some label. At test time the learned text encoder synthesizes a zero-shot linear classifier by embedding the names or descriptions of the target dataset’s classes.">}}
+
+> **Little fun fact from the paper**: The largest ResNet model, RN50x64, took 18 days to train on 592 V100 GPUs while the largest Vision Transformer took 12 days on 256 V100 GPUs
+
+### Segment Anything Model (SAM)
+
+[Segment Anything](https://ar5iv.labs.arxiv.org/html/2304.02643v1), ICCV 2023. SAM uses its own dataset with 1 billion masks on 11M licensed and privacy respecting images (SAM's image encoder outputs 𝐶 × 𝐻 × 𝑊 image embedding, which was built upon Masked Autoencoders, MAE).
+
+{{<github repo="facebookresearch/segment-anything">}}
+
+![An overview of the SAM model](https://ar5iv.labs.arxiv.org/html/2304.02643/assets/x1.png "An overview of the SAM model")
+
+#### SAM2
+
+[SAM 2: Segment Anything in Images and Videos]()
 
 ## Stacked Hourglass Networks
 
@@ -147,7 +218,7 @@ The DeepPose paper [DeepPose: Human Pose Estimation via Deep Neural Networks](ht
 {{< figure
     src="https://ar5iv.labs.arxiv.org/html/1312.4659/assets/x1.png"
     alt="Abstract purple artwork"
-    caption="*Figure 2* from the [DeepPose]() paper [Jr Korpa](https://ar5iv.labs.arxiv.org/html/1312.4659)">}}
+    caption="**Figure 2** from the [DeepPose]() paper [Jr Korpa](https://ar5iv.labs.arxiv.org/html/1312.4659)">}}
 
 The method proposed a cascade of DNN regressors to _iteratively_ refine pose predictions, starting with a _rough estimate_ and improving it through _successive stages_.
 
@@ -217,18 +288,3 @@ class="grid-w33"/>
 {{< /gallery >}}
 
 DINO uses `mixed query selection`. Also `look forward twice` (adding more connection for back-propagation), achieving great performance (DINO is around 500 epochs)
-
-## Vision Transformer
-
-From [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://ar5iv.labs.arxiv.org/html/2010.11929v2)
-
-{{< gallery >}}
-<img src="https://ar5iv.labs.arxiv.org/html/2010.11929/assets/x1.png"
-class="grid-w33"/>
-<img src="https://ar5iv.labs.arxiv.org/html/2010.11929/assets/x6.png" class="grid-w33" />
-{{< /gallery >}}
-
-{{< figure
-    src=""
-    alt="ViT overview"
-    caption="Model overview of ViT" >}}
