@@ -11,7 +11,7 @@ showHero: true
 heroStyle: background
 categories: "machine learning theory"
 tags: ["computer vision", "machine learning", "machine learning models"]
-slug: "an-in-depth-look-at-leading-computer-vision-models"
+url: "an-in-depth-look-at-leading-computer-vision-models"
 ---
 
 # An in-Depth Look at Leading Computer Vision ML Models

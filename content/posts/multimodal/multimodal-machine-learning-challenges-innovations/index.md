@@ -11,7 +11,7 @@ showHero: true
 heroStyle: background
 categories: "machine learning theory"
 tags: ["multimodal", "machine learning", "machine learning models"]
-slug: "multimodal-machine-learning-challenges-innovations"
+url: "multimodal-machine-learning-challenges-innovations"
 ---
 
 # Power of Multimodal Machine Learning: Challenges, Innovations, and Future Directions

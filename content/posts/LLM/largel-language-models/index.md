@@ -11,16 +11,26 @@ showHero: true
 heroStyle: background
 categories: "machine learning theory"
 tags: ["large language model", "machine learning", "machine learning models"]
-slug: "understanding-key-insights-and-trends-in-large-language-models"
+url: "/understanding-key-insights-and-trends-in-large-language-models"
 ---
 
 # Understanding Key Insights and Trends in Large Language Models
 
 Large Language Models (LLMs) are revolutionizing natural language processing (NLP) by enabling machines to understand and generate human-like text _(or even beyond)_. In this article, we explore key LLMs, their capabilities, and their impact on various applications.
 
-## General Language Model Pretraining with Autoregressive Blank Infilling
+## Intro to LLMs
 
-[General Language Model Pretraining with Autoregressive Blank Infilling](https://ar5iv.labs.arxiv.org/html/2103.10360v2)
+### General Language Model Pretraining with Autoregressive Blank Infilling (GLM)
+
+From [ACL 2022-05](https://ar5iv.labs.arxiv.org/html/2103.10360v2)
+
+{{<badge>}}@inproceedings{du2022glm,
+title={GLM: General Language Model Pretraining with Autoregressive Blank Infilling},
+author={Du, Zhengxiao and Qian, Yujie and Liu, Xiao and Ding, Ming and Qiu, Jiezhong and Yang, Zhilin and Tang, Jie},
+booktitle={Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+pages={320--335},
+year={2022}
+}{{</badge>}}
 
 ## Chain-of-Thought (CoT) Prompting
 
