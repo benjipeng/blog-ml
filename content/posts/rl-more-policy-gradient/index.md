@@ -1,9 +1,9 @@
 ---
-title: "More on Policy Gradient"
-description: "Off-policy algorithms leverage past experiences, while Proximal Policy Optimization (PPO) and Trust Region Policy Optimization (TRPO) offer advanced strategies for stable policy evolution in reinforcement learning."
-date: 2023-09-10
-series: ["Deep Reinforcement Learning"]
-series_order: 3
+title: "Trust Region Policy Optimization, Proximal Policy Optimization"
+description: "Off-policy algorithms uses past experiences, while Proximal Policy Optimization (PPO) and Trust Region Policy Optimization (TRPO) offer advanced strategies for stable policy evolution in reinforcement learning."
+date: 2024-08-20
+series: ["Reinforcement Learning and Deep Reinforcement Learning"]
+series_order: 2
 showAuthor: false
 seriesOpened: true
 showTableOfContents: true
@@ -11,99 +11,109 @@ showHero: true
 heroStyle: background
 ---
 
-Off-policy algorithms open doors to learning from past experiences, while Proximal Policy Optimization (PPO) and Trust Region Policy Optimization (TRPO) ensures stable policy updates.
-
 {{< katex >}}
 
-## On-policy v.s. Off-policy
+Policy Gradient is a method in reinforcement learning where the policy is directly optimized by estimating the gradient of the expected reward concerning the policy *parameters*.
 
-- On-policy: The `agent` ( or `actor`) learned and the `actor` interacting with the `environment` is the **_same_**.
-- Off-policy: The `actor` learned and the `actor` interacting with the `environment` is **_different_**.
+A neuron network with parameter \\(\theta\\) can be used to describe policy \\(\pi\_{\theta}\\).
 
-> Previous section is `on-policy`
+- **Input**: the observation of machine represented as a vector or a matrix.
+- **Output**: each action corresponds to a neuron in output layer.
 
-$$
-E _{\tau \sim p _{\theta}(\tau)}[R(\tau) \nabla log p_θ(\tau) ]
-$$
+From the previous article, **Trajectory** \\(\tau = \\{ s_1, a_1, s_2, a_2, ..., s_T, a_T \\} \\). For every trajectory, its probability can be calculated ( given the parameters \\(\theta\\) of the `actor` ):
 
-- Use \\(\pi\_{\theta}\\) to collect data, when \\(\theta\\) is updated, we have to sample training data again.
-- The goal is to use samples from \\(\pi\_{\theta'}\\) to train \\(\theta\\), which means reusing \\(\theta'\\) (or sample data).
+Off-policy algorithms open doors to learning from past experiences, while Proximal Policy Optimization (PPO) and Trust Region Policy Optimization (TRPO) ensures stable policy updates.
 
-### Importance Sampling
+**On-policy v.s. Off-policy**:
 
-\\( E _{x \sim p} [f(x)] \approx 1/N \sum ^N _{i=1} f(x^i) \\)
+- On-policy: The `agent` ( or `actor`) learned and the `actor` interacting with the `environment` are the *same*.
+- Off-policy: The `actor` learned and the `actor` interacting with the `environment` are *different*.
 
-- \\( E \_{x \sim p} [f(x)] \\) means given a function \\(f(x)\\), calculate the expected value \\(f(x)\\) of sampling x from distribution p
-- \\(x^i\\) is sampled from \\(p(x)\\).
-- But we can not sample from \\(p(x)\\), we only have samples from \\(q (x)\\) (this is the _catch_)
+## Vanilla Policy Gradient (VPG) algorithm
 
-$$
-\int f(x)p(x)dx = \int f(x) \frac{p(x)}{q(x)}q(x)dx \\\
-= E _{x \sim q}[f(x) \frac{p(x)}{q(x)}]
-$$
+{{< typeit
+  speed=2
+>}}
+VPG focuses on improving a policy by adjusting the probabilities of actions based on their expected returns
+{{< /typeit >}}
 
-### Issues of Importance Sampling
+The key idea of `Vanilla Policy Gradient` is to increase the likelihood of actions that lead to high rewards and decrease the likelihood of actions that lead to low rewards.
 
-To calculate variance, \\( \mathrm{VAR[X]} = \mathrm{E[X^2]} - \mathrm{E[X]}^2 \\).
+Let \\(\pi_\theta\\)​ be a policy with parameters 𝜃, and let \\(J(\pi_{\theta})\\) represent the expected finite-horizon un-discounted return of the policy. The gradient of \\(J(\pi_{\theta})\\) with respect to the policy parameters 𝜃 is given by:
 
-\\( \mathrm{Var} _{x \sim p} \not = \mathrm{Var} _{x \sim q} \\), r.v. with the same **mean** does _not_ guarantee same **variance**.
+$$\nabla_{\theta} J(\pi_{\theta}) = \mathbb{E}\_{\tau \sim \pi_{\theta}} \left[
+\sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t | s_t) A^{\pi_{\theta}}(s_t, a_t)
+\right]$$
 
-> Derivation may be updated in the future, but the difference between \\( \mathrm{Var} _{x \sim p}, \mathrm{Var} _{x \sim q} \\) is the term "p(x)/q(x)" ---> take home message: have to sample enough points
+where \\(A^{\pi_{\theta}}(s_t, a_t)\\) is the advantage function representing the relative value of an action \\(a_t\\) ​ taken in state \\(s_t\\)  under the current policy \\(\pi_{\theta}\\).
 
-### On-policy to Off-policy
+The `VPG` algorithm optimizes the policy by performing stochastic gradient ascent on the policy performance:
 
-We use a newer policy (another `actor` with \\(\theta'\\) that takes care of interaction with `environment`).
+$$\theta_{k+1} = \theta_k + \alpha \nabla_{\theta} J(\pi_{\theta_k})$$
 
-$$
-\nabla \bar{R}_θ = E _{ \tau \sim p _{\theta'}(\tau)}[ \frac{p _{\theta}(\tau)}{p _{\theta'}(\tau)} R(\tau) \nabla log p_θ(\tau) ]
-$$
+\\(\alpha\\) is the learning rate, and \\(\nabla_{\theta} J(\pi_{\theta_k})\\) is the estimated policy gradient.
 
-$$
-\nabla \bar{R}_θ = \frac{1}{N}\sum _{n=1}^{N} \sum _{t=1}^{T_n} R(\tau^n) \nabla log \ p_θ(a_t^n | s_t^n)
-$$
+- **Exploration**: VPG maintains a stochastic policy, meaning actions are sampled based on probabilities. This allows the agent to explore different actions.
+- **Exploitation**: Over time, as the policy improves, the randomness in action selection decreases, leading the policy to exploit known rewards. However, this can sometimes cause the policy to get stuck in local optima.
 
-{{< alert icon="lock" cardColor="#FF8B28" iconColor="#0096FF" textColor="#f1faee" >}}
-A lot of math warning... Therefore TL;DR, will implement in the future.
-{{< /alert >}}
+## Trust Region Policy Optimization
 
-$$
-J^{\theta'}(\theta) =  E _{(s_t, a_t) \sim \pi _{\theta'}}
-[\frac{p _{\theta}(a_t|s_t)}{p _{\theta'}(a_t|s_t)}A^{\theta'}(s_t, a_t)]
-$$
+`Trust Region Policy Optimization` (TRPO) is an advanced algorithm designed to improve policy performance while maintaining *stability* during training. Unlike vanilla policy gradients, which can be unstable with large steps, TRPO introduces a mechanism to ensure that each update step stays within a "trust region".
 
-## PPO and TRPO
+The *trust region* is defined by a constraint on how much the new policy is allowed to differ from the old one, measured using KL-Divergence --- a metric that quantifies the difference between two probability distributions.
 
-### Proximal Policy Optimization (PPO)
+### Kullback–Leibler (KL) divergence
 
-$$
-J^{\theta'} _{PPO}(\theta) = J^{\theta'} _{PPO}(\theta) - \beta KL(\theta, \theta')
-$$
+Kullback–Leibler (KL) divergence, \\({\displaystyle D_{\text{KL}}(P\parallel Q)}\\), measures how one probability distribution \\(P\\) is different from a second, reference probability distribution \\(Q\\).
 
-> Add constraints, wanting \\(\theta\\) to be similar to \\(\theta^{\prime}\\) --- the `behavior` from the `actor` to be similar (**not** the parameter differences).
+$${\displaystyle D_{\text{KL}}(P\parallel Q)=\sum _{x\in {\mathcal {X}}}P(x)\ \log \left({\frac {\ P(x)\ }{Q(x)}}\right).}$$
 
-### PPO Algorithm
+### The TRPO Update Rule
 
-- Initial policy parameters \\(\theta^0\\).
-- Then within each iteration
-  - Use \\(\theta^k\\) to interact with `env` and collect a lot of data ( \\( \lbrace s_t, a_t \rbrace \\) ), compute `advantage`.
-  - Find \\(\theta^0\\) that optimizes \\( J \_{PPO}(\theta) \\)
+Use \\(\pi_\theta\\)​ to represent a policy with parameters 𝜃. The goal of TRPO is to maximize the policy performance while ensuring that the new policy \\(\pi_{\theta+1}\\)​  is close to the old policy ​\\(\pi_{\theta}\\). The theoretical update rule is (\\(s.t.\\) means \\(\mathit{such} \ \mathit{that}\\)):
 
-#### PPO2
+$$\begin{array}{c} \theta_{k+1} = \arg \underset{{\theta}}{\max} \ \mathcal{L}(\theta_k, \theta) \newline
+\text{s.t.} \bar{D}_{KL}(\theta || \theta_k) \leq \delta \end{array}$$
 
-$$
-J^{\theta^k} _{PPO2}(\theta) \approx \sum _{(s_t, a_t)} min( \frac{p _{\theta}(a_t|s_t)}{p _{\theta^k}(a_t|s_t)}A^{\theta^k}(s_t, a_t), \\\
-clip(\frac{p _{\theta}(a_t|s_t)}{p _{\theta^k}(a_t|s_t)}, 1-\epsilon, 1+\epsilon)A^{\theta^k}(s_t, a_t))
-$$
+- \\(\mathcal{L}(\theta_k, \theta)\\) is the `Surrogate Advantage Function`, measuring how well the new policy \\(\pi_\theta\\) performs relative to the old policy \\(\pi_{\theta_k}\\)
+  $$\mathcal{L}(\theta_k, \theta) = \mathbb{E}\_{s,a \sim \pi_{\theta_k}} \left[
+\frac{\pi_{\theta}(a|s)}{\pi_{\theta_k}(a|s)} A^{\pi_{\theta_k}}(s,a)
+\right]$$
+- **KL-Divergence Constraint**, \\(\bar{D}_{KL}(\theta || \theta_k)\\),ensures the new policy doesn’t diverge too much from the old policy.
+  $$\bar{D}\_{KL}(\theta || \theta_k) = \mathbb{E}\_{s \sim \pi\_{\theta_k}} \lbrack D\_{KL}\lparen\pi\_{\theta}(\cdot|s) || \pi\_{\theta_k} (\cdot|s) \rparen \rbrack$$
 
-\\(\epsilon\\) is a hyperparameter.
+### Approximations for Practical Implementation
 
-### Trust Regin Policy Optimization (TRPO)
+The theoretical TRPO update is complex, so approximations are used:
 
-$$
-J^{\theta'} _{TRPO}(\theta) = E _{(s_t, a_t) \sim \pi _{\theta'}}
-[\frac{p _{\theta}(a_t|s_t)}{p _{\theta'}(a_t|s_t)}A^{\theta'}(s_t, a_t)]
-$$
+**Taylor Expansion**: \\(\mathcal{L}(\theta_k, \theta)\\) and \\(\bar{D}_{KL}(\theta || \theta_k)\\) can both be appriximated using tylor expansion around \\(\theta_k\\)
 
-With some KL constraints \\( KL(\theta, \theta') < \delta \\)
+- Surrogate advantage:
+  $$\mathcal{L}(\theta_k, \theta) \approx g^T (\theta - \theta_k)$$
+- KL-Divergence:
+  $$\bar{D}_{KL}(\theta || \theta_k) \approx \frac{1}{2} (\theta - \theta_k)^T H (\theta - \theta_k)$$
 
-\\(\\)
+Resulting in an approximate optimization problem:
+
+$$\begin{array}{c} \theta_{k+1} = \arg \max_{\theta}  g^T (\theta - \theta_k) \newline
+\text{s.t.}  \frac{1}{2} (\theta - \theta_k)^T H (\theta - \theta_k) \leq \delta \end{array}$$
+
+**Lagrangian Duality Solution**: This optimization problem can be solved using Lagrangian duality, resulting in:
+
+$$\theta_{k+1} = \theta_k + \sqrt{\frac{2 \delta}{g^T H^{-1} g}} H^{-1} g$$
+
+**Backtracking Line Search**: Due to potential errors from approximations, TRPO employs a backtracking line search to ensure the new policy satisfies the KL-Divergence constraint and improves performance:
+
+$$\theta_{k+1} = \theta_k + \alpha^j \sqrt{\frac{2 \delta}{g^T H^{-1} g}} H^{-1} g$$
+
+## Proximal Policy Optimization
+
+PPO, or Proximal Policy Optimization, addresses a similar challenge as TRPO: how to make the largest possible policy improvement using existing data without risking a collapse in performance.
+
+TRPO uses a complex second-order optimization approach, while PPO simplifies this by using first-order methods with additional mechanisms to ensure the new policy remains close to the old one. Despite its simplicity, PPO often matches or exceeds the performance of TRPO.
+
+PPO comes in two main flavors: PPO-Penalty and PPO-Clip. Both aim to limit the change between consecutive policies, but they achieve this in different ways:
+
+- **PPO-Penalty**: Introduces a penalty for deviating too far from the old policy in terms of KL-divergence. The penalty coefficient is adjusted automatically during training to ensure it's appropriate.
+
+- **PPO-Clip**: Instead of using a KL-divergence penalty or constraint, it clips the objective function itself to prevent the new policy from diverging too much from the old policy.

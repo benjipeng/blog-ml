@@ -2,8 +2,8 @@
 title: "Q-learning"
 description: "Q-learning is a reinforcement learning technique where an agent iteratively learns the value of its actions to navigate towards optimal outcomes in an environment."
 date: 2023-09-10
-series: ["Deep Reinforcement Learning"]
-series_order: 4
+series: ["Reinforcement Learning and Deep Reinforcement Learning"]
+series_order: 3
 showAuthor: false
 seriesOpened: true
 showTableOfContents: true
