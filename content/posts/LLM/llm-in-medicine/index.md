@@ -18,7 +18,7 @@ The healthcare landscape is undergoing a profound transformation since the emerg
 
 Large language models (LLMs) can respond to free-text queries without being specifically trained in the task in question.
 
-Introduction
+# Introduction
 
 Briefly introduce the transformative impact of LLMs in healthcare.
 Highlight the potential benefits and challenges.
