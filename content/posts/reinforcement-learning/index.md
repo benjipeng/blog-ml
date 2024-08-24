@@ -1,9 +1,9 @@
 ---
 title: "What is Deep Reinforcement Learning (RL)"
-description: "Deep Reinforcement Learning (RL) combines deep learning techniques with reinforcement learning to enable agents to learn optimal strategies from large volumes of complex data"
-date: 2023-09-09
+description: "Here we introduce language and notation used to discuss RL and explain what RL do"
+date: 2024-08-09
 tags: ["machine learning", "reinforcement learning", "theory"]
-series: ["Deep Reinforcement Learning"]
+series: ["Reinforcement Learning and Deep Reinforcement Learning"]
 series_order: 1
 showAuthor: false
 seriesOpened: true
@@ -12,27 +12,66 @@ showHero: true
 heroStyle: background
 ---
 
+## What is Reinforcement Learning (RL)
+
+Reinforcement Learning (RL) is a study of `agents` and how `agents learn by trial and error`.
+
+> RL `formalizes` the idea that `rewarding` or `punishing` an agent for a certain behavior makes it more likely to `repeat` or `forego` such behavior in the future.
+
+### Key Concepts in Reinforcement Learning
+
+The main characters of RL are the `agent` and the `environment`.
+
+- The `environment` is where the `agent` lives in and interact with. The `agent` sees the `state`, \\(s\\), of the `environment` and decide an `action`, \\(a\\), to take.
+- The `agent` obtains a `reward`, \\(r\\), signal from the `environment`, a numeric value indicating how _good_ or _bad_ the current `state` is. The overall goal of the `agent` is to **maximize** its **_cumulated reward_**, `return`.
+
+![Agent-environment interaction loop](https://media.springernature.com/full/springer-static/image/art%3A10.1007%2Fs11012-024-01830-1/MediaObjects/11012_2024_1830_Fig1_HTML.png?as=webp "Agent-environment interaction loop.")
+
 Deep Reinforcement Learning (RL) combines deep learning techniques with reinforcement learning to enable agents to learn optimal strategies from large volumes of complex data.
 
-## Background
+#### What is a policy in reinforcement learning?
 
-Reinforcement Learning (RL) is no stranger to anyone, there has been a lot of `trendy` applications like AlphaGo. This series of articles is aimed to provide the general audiences an overview on RL rather than diving in and showing them the ins and outs.
+A `policy` is a rule that used by an agent to _determine_ its `action`s. A policy (\\(t\\) is a time step) can be described as:
 
-### Supervised Learning to RL
+- Deterministic: \\(a_t = \mu(s_t)\\)
+- Stochastic: \\(a \_t \sim \pi(\cdot | s \_t)\\), where \\(\pi\\) is used instead of \\(\mu\\)
 
-There are a lot of ML tasks are considered supervised learning:
+\\(\theta\\) or \\(\phi \\) are used when parameterized policies (learning from a neuron network, _NN_), we have \\(\mu\_{\theta}\\) and \\(\pi\_{\theta}\\) respectively.
 
-- **An Image Classifier**: Let the machine know what the `Input` is _AND_ the `Output` (that it is supposed to give), then train the model.
-- **Self-supervised Learning**: Supervised learning _IN REALITY_, `Label`s can be generated _automatically_.
-- **Auto-Encoder**: An _unsupervised_ method (no human labeling), but in reality still has some `Label`s that do _NOT_ require humans to generate.
+#### What is a Trajectory?
 
-RL, on the other hand, is quite _different_ ------
-You do _NOT_ know the _BEST_ `Output` when you give machine an `Input`:
+A trajectory \\(\tau\\) is a sequence of `states` and `actions`:
 
-You may attempt to use `supervised learning` methods if you would like to teach the machine to play go. Predict the _BEST_ next move giving what is on the go board. You may also feed the model with records from previous matches. But there are _A LOT OF LIMITATIONS_ (i.e. What is the _best_ answer? How do I know the _correct_ answer?).
+$$\tau = (s_0, a_0, s_1, a_1, ...).$$
 
-> It is still challenging to label data in _SOME_ tasks. The machines, thankfully, knows whether the results are good.
-> {{< katex >}}
+_State transition_ at different \\(t\\) steps (_i.e._ \\(s\_{t}\\) to \\(s\_{t+1}\\)) can be deterministic, \\(s\_{t+1} = f(s_t, a_t)\\), or stochastic, \\(s\_{t+1} \sim P(\cdot|s_t, a_t)\\).
+
+#### Reward function and Return
+
+A `reward function` \\(R\\) depends on **_the current state of the world, the action just taken, and the next state of the world_**.
+
+$$r_t = R(s_t, a_t, s_{t+1})$$
+
+frequently simplified as `current state` \\(r_t = R(s_t)\\), or `state-action pair` \\(r_t = R(s_t,a_t)\\).
+
+Getting `reward` over a `trajectory` yields `return` \\(R(\tau)\\):
+
+### From Supervised Learning to Reinforcement Learning
+
+There are a lot of machine learning tasks considered as supervised learning:
+
+- **Image Classifier**: Let the machine know what the input is _AND_ the outoput (that it is supposed to give), then train the model.
+- **Self-supervised Learning**: Supervised learning _IN REALITY_, where labels can be generated _automatically_.
+- **Auto-Encoder**: An _unsupervised_ method (no human labeling), but in reality still uses labels that do _NOT_ require humans to generate.
+
+Reinforcement Learning, on the other hand, is quite different: You do _NOT_ know the **_BEST_** `output` when you give machine an `input`.
+
+{{< badge >}}
+You may attempt to use supervised learning methods when teaching the machine to play a game, predicting the best next move giving what the current state of the game. You may also feed the model with recordings from previous matches. In the end of the day, there are A LOT OF LIMITATIONS (i.e. What is the best answer? How do I know the correct answer?, etc.). It is still challenging to label data in many tasks. The machines, thankfully, knows whether the results are good using reinforcement learning (RL)
+
+{{< /badge >}}
+
+{{< katex >}}
 
 ## Overview
 
@@ -118,7 +157,7 @@ As mentioned before, `Env` interacts with `Actor`, we can use some short `LATEX`
 So as "\\( \overbrace{\underbrace{\text{\footnotesize{Actor}}}\_{a_2 \nearrow}}^{\searrow s_2} \Rrightarrow\\)" (the `actor` takes observation 2 and yields action 2).
 
 - The s,a sequence is called `Trajectory` \\(\tau\\) can be noted as {\\( s_1, a_1, s_2, a_2, ... \ \\)}
-- Machine gets `reward` ( \\(r_T\\), actually a _function_), typically depends on \\(s_T, a_T\\).
+- Machine gets `reward` ( \\(r*T\\), actually a \_function*), typically depends on \\(s_T, a_T\\).
 
 There are some challenges:
 `Actor` is a network, `env` and `reward` are black boxes, **some of the processes / results** are **stochastic / nondeterministic** ------ Can **_NOT_** be solved like a standard _optimization_ problem.
