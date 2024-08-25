@@ -170,6 +170,8 @@ Mistral 7B takes a significant leap in balancing the goals of _getting high perf
 - **Pre-fill and Chunking**
   - The prompt is known in advance, and we can pre-fill the \\((k, v)\\) cache with the prompt.
 
+Mistral 7B uses a byte-level BPE (Byte-Pair Encoding) tokenizer, which is similar to what models like LLaMA use. It is trained using the standard next-token prediction objective, where the model learns to predict the next token in a sequence.
+
 [^mistral7b]:
     {{<badge>}}@article{jiang2023mistral,
     title={Mistral 7B},
@@ -179,6 +181,21 @@ Mistral 7B takes a significant leap in balancing the goals of _getting high perf
     }{{</badge>}}
 
 #### Mistral 7Bx8
+
+`Mistral 7B×8` is based on a `transformer` architecture, a common framework for large language models. The "7B" refers to the model having approximately 7 billion parameters. However, "7B×8" indicates that there are 8 different expert models, each with 7 billion parameters, which are combined in a Mixture of Experts (`MoE`) framework.
+
+## Some Techniques implemented in LLM
+
+### Mixture of Experts (MoE)
+
+Sparse training is an active area of research and engineering (Gray et al., 2017; Gale et al., 2020). The original Mixture of Experts (MoE) model routes input tokens to a subset of experts, typically the top-k experts, using a softmax-based gating mechanism.
+
+MoE uses a gating mechanism that routes different inputs to different "experts". The **gating network** assigns each input 𝑥 a probability distribution over the experts. The gate outputs a sparese probability distribution \\(p(x)\\) from a set of experts \\(\{E_i\}_{i=1}^N\\). \\(p_i(x)\\) is the probability of choosing expert \\(i\\) for input \\(x\\)
+
+[Switch Transformers](https://arxiv.org/abs/2101.03961) takes
+
+### KV (Key-Value) cache
+
 
 ## Chain-of-Thought (CoT) Prompting
 
