@@ -48,3 +48,75 @@ config/_default/
 - GitHub: [@benjipeng](https://github.com/benjipeng)
 - LinkedIn: [benjiph](https://www.linkedin.com/in/benjiph)
 - Instagram: [@ben_flyer](https://instagram.com/ben_flyer)
+
+## Working with Git Submodules
+
+This project uses git submodules to manage the Blowfish theme. Below are detailed instructions on how to update and inspect the submodules.
+
+### Inspecting Submodules
+
+1. **Check the status of submodules**:
+   ```bash
+   git submodule status
+   ```
+   This command will show the current commit checked out for each submodule.
+
+2. **View the remote URL of a submodule**:
+   ```bash
+   git config --get submodule.themes/blowfish.url
+   ```
+   This will display the URL of the remote repository for the Blowfish theme submodule.
+
+3. **Check the branch being tracked**:
+   ```bash
+   git config --get submodule.themes/blowfish.branch
+   ```
+   This command will show which branch the submodule is tracking.
+
+### Updating Submodules
+
+1. **Update a specific submodule to the latest commit**:
+   ```bash
+   git submodule update --remote themes/blowfish
+   ```
+   This command fetches the latest changes from the remote repository and updates the submodule to the latest commit.
+
+2. **Update all submodules to their latest commits**:
+   ```bash
+   git submodule update --remote
+   ```
+   This will update all submodules in the project to their latest commits.
+
+3. **Pull the latest changes from the submodule's remote repository**:
+   ```bash
+   git submodule foreach git pull origin main
+   ```
+   This command will iterate through each submodule and pull the latest changes from the specified branch.
+
+4. **Reinitialize and update all submodules recursively**:
+   ```bash
+   git submodule update --init --recursive
+   ```
+   This command initializes any uninitialized submodules and updates them to the latest commit.
+
+### Syncing Submodules Without History
+
+If you want to sync a submodule to the latest commit without retaining its history, follow these steps:
+
+1. **Remove the existing submodule**:
+   ```bash
+   git config -f .gitmodules --remove-section submodule.themes/blowfish
+   git config -f .git/config --remove-section submodule.themes/blowfish
+   rm -rf themes/blowfish
+   git rm --cached themes/blowfish
+   ```
+
+2. **Re-add the submodule**:
+   ```bash
+   git submodule add -b main https://github.com/nunocoracao/blowfish.git themes/blowfish
+   ```
+
+3. **Initialize and update the submodule**:
+   ```bash
+   git submodule update --init --recursive
+   ```
