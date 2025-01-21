@@ -196,10 +196,18 @@ MoE uses a gating mechanism that routes different inputs to different "experts".
 
 ### KV (Key-Value) cache
 
+The KV (Key-Value) cache is a memory optimization technique used to accelerate inference by caching the key and value tensors from the attention mechanism across different layers, critical for efficiently processing long sequences without recalculating the same values repeatedly.
+
+The attention mechanism in transformers can be described mathematically as:
+Attention(Q,K,V)=softmax(QKTdk)V
+
+#### Encoders and Decoders in transformer models
+
+In the transformer encoder, the self-attention mechanism allows each token in the input sequence to attend to all other tokens in the same sequence. The decoder in a transformer model uses two attention mechanisms: self-attention and encoder-decoder attention (sometimes called cross-attention).
 
 ## Chain-of-Thought (CoT) Prompting
 
-By asking LLM to solve complex reasoning tasks in a step-wise manner, CoT enhances the reasoning abilities of Large Language Models (LLMs)
+By asking LLM to solve complex reasoning tasks in a step-wise manner, CoT enhances the reasoning abilities of Large Language Models (LLMs). 
 
 ## Knowledge Distillation
 
