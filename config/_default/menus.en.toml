@@ -11,9 +11,14 @@
 
 
 [[main]]
-name = "Posts"
+name = "ML/AI"
 pageRef = "posts"
 weight = 10
+
+[[main]]
+name = "Development"
+pageRef = "dev"
+weight = 20
 
 # [[main]]
 # name = "MLOps"
