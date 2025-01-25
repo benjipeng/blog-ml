@@ -46,8 +46,7 @@ config/_default/
 
 ### Social Links
 - GitHub: [@benjipeng](https://github.com/benjipeng)
-- LinkedIn: [benjiph](https://www.linkedin.com/in/benjiph)
-- Instagram: [@ben_flyer](https://instagram.com/ben_flyer)
+- LinkedIn: [benjiph](https://www.linkedin.com/in/benjiph 
 
 ## Working with Git Submodules
 
