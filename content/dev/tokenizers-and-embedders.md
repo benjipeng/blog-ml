@@ -29,7 +29,6 @@ Tokenizers and embedders are foundational components in language models. They tr
 Tokenizers are **rule-based or algorithmically trained** components that map raw text to token IDs. They are **not neural networks** but rely on predefined vocabularies and rules.
 
 ### **Typical Components**
-{{< list >}}
 - **Vocabulary**: A dictionary mapping tokens (e.g., words, subwords) to integer IDs.  
   Example: `{"hello": 7592, "world": 2088, "[UNK]": 100}`.
 
@@ -40,7 +39,6 @@ Tokenizers are **rule-based or algorithmically trained** components that map raw
   - Unigram: Used in ALBERT.
 
 - **Special Tokens**: Markers like `[CLS]`, `[SEP]`, `[PAD]`, and `[MASK]` for task-specific formatting.
-{{< /list >}}
 
 ---
 
