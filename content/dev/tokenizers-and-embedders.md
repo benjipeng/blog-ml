@@ -11,9 +11,6 @@ category: "machine learning fundamentals"
 featureimage: "images/tokenizers-embedders.jpg"
 ---
 
-Absolutely! Let’s break down the **structures of tokenizers and embedders**, their training processes, and how they fit into the pipeline of modern LLMs like GPT, BERT, or T5.
-
----
 
 {{< lead >}}
 Tokenizers and embedders are foundational components in language models. They transform raw text into machine-understandable representations and are pivotal for model performance.
