@@ -13,7 +13,6 @@ category: "machine learning fundamentals"
 
 ## 1. Tokenizer Structure
 
-![Tokenizer Structure Diagram](images/tokenizer-structure.png)
 *Tokenizers map raw text to token IDs, enabling LLMs to process language.*
 
 Tokenizers are **rule-based or algorithmically trained** components that map raw text to token IDs. They are **not neural networks** but rely on predefined vocabularies and rules.
