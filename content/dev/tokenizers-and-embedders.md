@@ -5,10 +5,8 @@ date: 2025-01-26
 tags: ["machine learning", "transformers", "tokenizers", "LLMs"]
 showAuthor: true
 showTableOfContents: true
-showHero: true
-heroStyle: thumbAndBackground
+showHero: false
 category: "machine learning fundamentals"
-featureimage: "images/tokenizers-embedders.jpg"
 ---
 
 > Tokenizers and embedders are foundational components in language models. They transform raw text into machine-understandable representations and are pivotal for model performance.
@@ -66,11 +64,6 @@ Here's an overview of the entire process, from tokenizer training to embedding l
 
 > **Important**: Always use the same tokenizer as the pretrained model to ensure consistent token-ID mappings.
 
-![Tokenization Examples](images/bpe-example.png)
-*Example of Byte Pair Encoding tokenization*
-
-![WordPiece Examples](images/wordpiece-example.png)
-*Example of WordPiece tokenization*
 
 ## 5. Why Tokenizers and Embedders Are Key
 
@@ -82,5 +75,3 @@ Tokenizers convert raw text into discrete representations, while embedders trans
 - Embedding layers are learned alongside the LLM during pretraining
 - Mismatched tokenizers lead to invalid token-ID mappings
 - Subword tokenization reduces out-of-vocabulary (OOV) issues
-
-[Learn More About Language Models](https://huggingface.co/docs/transformers/main/en/tokenizer_summary)
