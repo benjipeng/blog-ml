@@ -19,9 +19,6 @@ showTableOfContents: true
 showHero: false
 category: "ai-systems-engineering"
 ---
-
-Let me create a comprehensive deep dive into the foundations of AI agents.
-
 ## Foundation
 
 ### Core Architecture Patterns
