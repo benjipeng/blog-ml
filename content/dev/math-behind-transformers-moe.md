@@ -217,34 +217,35 @@ The Mixture of Experts (MoE) architecture enhances transformer models by introdu
 ### Core Components and Mathematics
 
 **Base Transformer Recap**:  
-In a standard transformer layer, the feed-forward network (FFN) processes all tokens identically. For an input token \(x \in \mathbb{R}^d\), the FFN is:
+In a standard transformer layer, the feed-forward network (FFN) processes all tokens identically. For an input token \\(x \in \mathbb{R}^d\\), the FFN is:
 
 $$
 \text{FFN}(x) = W_2 \cdot \text{GELU}(W_1 x + b_1) + b_2
 $$
 
-where \(W_1 \in \mathbb{R}^{d \times 4d}\), \(W_2 \in \mathbb{R}^{4d \times d}\), \(b_1 \in \mathbb{R}^{4d}\), and \(b_2 \in \mathbb{R}^d\).
+where \\(W_1 \in \mathbb{R}^{d \times 4d}\\), \\(W_2 \in \mathbb{R}^{4d \times d}\\), \\(b_1 \in \mathbb{R}^{4d}\\), and \\(b_2 \in \mathbb{R}^d\\).
 
 **MoE Layer**:  
-The MoE layer replaces the FFN with \(E\) experts and a router. For a token \(x_i \in \mathbb{R}^d\):
+The MoE layer replaces the FFN with \\(E\\) experts and a router. For a token \\(x_i \in \mathbb{R}^d\\):
 
 1. **Router**: Computes routing probabilities over experts:  
    $$
    g(x_i) = \text{softmax}(x_i W_r) \in \mathbb{R}^E
    $$  
-   where \(W_r \in \mathbb{R}^{d \times E}\) is the router’s weight matrix. The top-\(k\) experts (typically \(k=1\) or \(2\)) are selected based on these probabilities.
+   where \\(W_r \in \mathbb{R}^{d \times E}\\) is the router’s weight matrix. The top-\\(k\\) experts (typically \\(k=1\\) or \\(2\\)) are selected based on these probabilities.
 
-2. **Experts**: Each expert \(j\) is an FFN:  
+2. **Experts**: Each expert \\(j\\) is an FFN:  
    $$
-   \text{Expert}_j(x_i) = W_{2,j} \cdot \text{GELU}(W_{1,j} x_i + b_{1,j}) + b_{2,j}
+   \text{Expert} _j(x_i) = W _{2,j} \cdot \text{GELU}(W _ {1,j} x_i + b _{1,j}) + b _{2,j}
    $$  
-   where \(W_{1,j} \in \mathbb{R}^{d \times m}\), \(W_{2,j} \in \mathbb{R}^{m \times d}\), and \(m\) is the hidden dimension (often \(m=4d\)). Experts share the same architecture but have independent parameters.
+
+   where \\(W_{1,j} \in \mathbb{R}^{d \times m}\\), \\(W_{2,j} \in \mathbb{R}^{m \times d}\\), and \\(m\\) is the hidden dimension (often \\(m=4d\\)). Experts share the same architecture but have independent parameters.
 
 3. **Combination**: The final output is a weighted sum of the selected experts:  
    $$
    \text{MoE}(x_i) = \sum_{j \in \mathcal{T}_i} g(x_i)_j \cdot \text{Expert}_j(x_i)
    $$  
-   where \(\mathcal{T}_i\) is the set of top-\(k\) expert indices for token \(x_i\).
+   where \\(\mathcal{T}_i\\) is the set of top-\\(k\\) expert indices for token \\(x_i\\).
 
 ### Load Balancing and Capacity
 
@@ -252,21 +253,22 @@ The MoE layer replaces the FFN with \(E\) experts and a router. For a token \(x_
 $$
 C = \left\lceil \frac{\alpha \cdot B \cdot n}{E} \right\rceil
 $$  
-where \(B\) is the batch size, \(n\) is the sequence length, and \(\alpha \geq 1\) is a buffer factor.
+where \\(B\\) is the batch size, \\(n\\) is the sequence length, and \\(\alpha \geq 1\\) is a buffer factor.
 
 **Load Balancing Loss**: A regularization term ensures uniform expert utilization:  
 $$
-\mathcal{L}_{\text{balance}} = \lambda \cdot E \cdot \sum_{j=1}^E f_j \cdot p_j
+\mathcal{L} _{\text{balance}} = \lambda \cdot E \cdot \sum _{j=1}^E f_j \cdot p_j
 $$  
-where \(f_j\) is the fraction of tokens routed to expert \(j\), \(p_j\) is the mean routing probability for expert \(j\), and \(\lambda\) is a hyperparameter (typically \(0.01\)).
+
+where \\(f_j\\) is the fraction of tokens routed to expert \\(j\\), \\(p_j\\) is the mean routing probability for expert \\(j\\), and \\(\lambda\\) is a hyperparameter (typically \\(0.01\\)).
 
 ### Sparse Computation
 
-**Activation Sparsity**: Only \(k\) experts per token are activated. For a batch of \(B \cdot n\) tokens, the MoE layer computes:  
-- Router logits: \(B \cdot n \cdot E\) operations  
-- Expert computations: \(B \cdot n \cdot k \cdot (2dm + m + d)\) operations  
+**Activation Sparsity**: Only \\(k\\) experts per token are activated. For a batch of \\(B \cdot n\\) tokens, the MoE layer computes:  
+- Router logits: \\(B \cdot n \cdot E\\) operations  
+- Expert computations: \\(B \cdot n \cdot k \cdot (2dm + m + d)\\) operations  
 
-This contrasts with a dense FFN’s \(B \cdot n \cdot (2dm + m + d)\) operations. MoE scales model size (via \(E\)) without linearly increasing computation.
+This contrasts with a dense FFN’s \\(B \cdot n \cdot (2dm + m + d)\\) operations. MoE scales model size (via \\(E\\)) without linearly increasing computation.
 
 ### Advanced Variants
 
@@ -274,20 +276,22 @@ This contrasts with a dense FFN’s \(B \cdot n \cdot (2dm + m + d)\) operations
 $$
 j^* = \arg\max_j (x_i W_r)_j
 $$  
-and only \(\text{Expert}_{j^*}\) processes \(x_i\).
 
-**Expert Choice Routing**: Experts select tokens instead of tokens selecting experts. For expert \(j\):  
+and only \\(\text{Expert}_{j^*}\\) processes \\(x_i\\).
+
+**Expert Choice Routing**: Experts select tokens instead of tokens selecting experts. For expert \\(j\\):  
 $$
 \mathcal{S}_j = \text{top-}C \text{ tokens by } x_i W_r^j
 $$  
-where \(W_r^j \in \mathbb{R}^d\) is the expert-specific routing vector.
+
+where \\(W_r^j \in \mathbb{R}^d\\) is the expert-specific routing vector.
 
 **Hierarchical MoE**: Organizes experts into groups. A token is first routed to a group, then to an expert within the group, reducing the effective routing dimension.
 
 ### Implementation Challenges
 
-**Distributed Training**: Experts are sharded across devices. Tokens are routed via all-to-all communication, which introduces overhead proportional to \(E\).
+**Distributed Training**: Experts are sharded across devices. Tokens are routed via all-to-all communication, which introduces overhead proportional to \\(E\\).
 
-**Memory Footprint**: Storing \(E\) experts increases memory use by \(E \times\) compared to a dense layer. Techniques like expert parameter offloading or quantization mitigate this.
+**Memory Footprint**: Storing \\(E\\) experts increases memory use by \\(E \times\\) compared to a dense layer. Techniques like expert parameter offloading or quantization mitigate this.
 
-**Convergence Stability**: The interplay between router gradients and expert training requires careful tuning of optimizer settings (e.g., higher learning rates for routers).
+**Convergence Stability**: The interation between router gradients and expert training requires careful tuning of optimizer settings (e.g., higher learning rates for routers).
