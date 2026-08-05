@@ -12,7 +12,16 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [mdx(), sitemap()],
+  integrations: [
+    mdx(),
+    // /tags/ and /categories/ exist only to forward the old taxonomy URLs to
+    // /topics/. They are redirects, not destinations, so keep them out of the
+    // sitemap — listing a redirect there argues against the move.
+    sitemap({
+      filter: (page) =>
+        !/\/(tags|categories)(\/|$)/.test(new URL(page).pathname),
+    }),
+  ],
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],

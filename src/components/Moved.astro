@@ -1,0 +1,47 @@
+---
+// A static stand-in for a 301. GitHub Pages serves files, not redirect rules,
+// so an instant meta refresh plus a canonical is the strongest available
+// signal: search engines read the pair as a permanent move and pass the old
+// URL's standing to the target.
+//
+// Deliberately no `noindex`. Combining it with a canonical that points
+// elsewhere is contradictory, and the directive can carry across to the
+// target — which would suppress the very page this is trying to feed.
+interface Props {
+  to: string;
+}
+
+const { to } = Astro.props;
+const target = new URL(to, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={`0; url=${to}`} />
+    <link rel="canonical" href={target} />
+    <title>Moved</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #04060a;
+        color: #8a94a6;
+        font: 400 15px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+      a {
+        color: #d8dee9;
+      }
+    </style>
+  </head>
+  <body>
+    <p>This page moved to <a href={to}>{to}</a>.</p>
+    <script is:inline define:vars={{ to }}>
+      location.replace(to);
+    </script>
+  </body>
+</html>

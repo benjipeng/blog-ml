@@ -1,0 +1,50 @@
+---
+import {
+  articleTopics,
+  getPublishedArticles,
+  topicSlug,
+} from "../../lib/content";
+import Moved from "../../components/Moved.astro";
+
+// The site used to publish taxonomy pages under /tags/. Those URLs are still
+// in the index and now return 404, which discards whatever standing they had.
+// Send each one to its /topics/ counterpart instead.
+//
+// Paths come from the same content the topic pages are built from, so this
+// stays in step with the taxonomy on its own. Only slugs that changed shape in
+// the move need naming, and each is listed because it was seen in the index —
+// not guessed.
+//
+// getStaticPaths runs in its own scope, so everything it needs lives inside it.
+export async function getStaticPaths() {
+  const RENAMED: Record<string, string> = {
+    "large-language-model": "large-language-models",
+  };
+
+  const articles = await getPublishedArticles();
+  const slugs = new Set<string>();
+  for (const entry of articles) {
+    for (const topic of articleTopics(entry)) {
+      const slug = topicSlug(topic);
+      if (slug) slugs.add(slug);
+    }
+  }
+
+  const paths = [...slugs].map((slug) => ({
+    params: { tag: slug },
+    props: { to: `/topics/${slug}/` },
+  }));
+
+  for (const [from, to] of Object.entries(RENAMED)) {
+    if (slugs.has(to) && !slugs.has(from)) {
+      paths.push({ params: { tag: from }, props: { to: `/topics/${to}/` } });
+    }
+  }
+
+  return paths;
+}
+
+const { to } = Astro.props;
+---
+
+<Moved to={to} />
