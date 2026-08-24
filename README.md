@@ -22,7 +22,7 @@ This repository builds and deploys renocrypt.com. It is a static [Astro](https:/
 
 ## Local development
 
-Requires **Node 22** (matches CI).
+Requires **Node 24** (matches CI).
 
 ```bash
 git clone https://github.com/benjipeng/renocrypt.com.git
@@ -57,7 +57,7 @@ npm run check     # astro check (TypeScript + template diagnostics)
 
 ## Deployment
 
-Each push to `main` runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml): it sets up Node 22, installs with `npm ci`, builds with `npm run build` (`astro build`), and publishes `./dist` to GitHub Pages. DNS points `www.renocrypt.com` at Pages, so no manual step is needed after merge.
+Each push to `main` runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml): it sets up Node 24, installs with `npm ci`, builds with `npm run build` (`astro build`), and publishes `./dist` to GitHub Pages. DNS points `www.renocrypt.com` at Pages, so no manual step is needed after merge.
 
 ## License
 
