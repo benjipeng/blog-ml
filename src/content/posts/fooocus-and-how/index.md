@@ -10,6 +10,7 @@ showHero: true
 heroStyle: background
 category: "machine-learning-application"
 cover: "./featured.jpg"
+coverAlt: "A generated portrait of a woman in profile with turquoise and gold face paint, crowned with orange and blue flowers"
 ---
 
 

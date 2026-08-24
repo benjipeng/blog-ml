@@ -12,6 +12,7 @@ categories: "machine-learning-theory"
 tags: ["large-language-models", "machine-learning", "machine-learning-models"]
 url: "/gpt-palm-glm-llama-and-beyond-large-language-models-in-medicine/"
 cover: "./featured.jpg"
+coverAlt: "A pastel 3D scene on mint green with toy llamas, capsules, an ambulance, an MRI scanner and a model heart"
 ---
 
 

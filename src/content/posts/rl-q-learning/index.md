@@ -10,6 +10,7 @@ showHero: true
 heroStyle: background
 tags: ["machine-learning", "reinforcement-learning", "theory"]
 cover: "./featured.jpg"
+coverAlt: "A smooth interlocking torus knot in pink and teal gradients on a near black background"
 ---
 Q-learning, a cornerstone of reinforcement learning, is the quest of an agent to master its environment by discerning the quality of its actions. Through iterative experiences, the agent constructs a map of rewards, forging paths to optimal outcomes.
 

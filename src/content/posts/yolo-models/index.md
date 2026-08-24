@@ -9,6 +9,7 @@ heroStyle: background
 url: "/various-yolo-versions-and-differences/"
 tags: ["machine-learning", "computer-vision"]
 cover: "./featured.jpg"
+coverAlt: "Neon letters spelling YOLO on a workbench, with gears and lenses above and glass flasks in front"
 ---
 > The YOLO series of object detectors prioritizes speed and simplicity by framing object detection as a single regression problem. A single neural network directly predicts bounding boxes and class probabilities from the full image.
 

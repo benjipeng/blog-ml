@@ -9,6 +9,7 @@ showTableOfContents : true
 showHero: true
 heroStyle: background
 cover: "./featured.jpg"
+coverAlt: "An abstract layered sculpture of flowing blue, orange and cream forms with discs suspended on thin lines"
 ---
 
 

@@ -9,6 +9,7 @@ showTableOfContents : true
 showHero: true
 heroStyle: background
 cover: "./featured.jpg"
+coverAlt: "A cubist painting of angular figures, eyes and city shapes in pink, blue, red and black"
 ---
 
 

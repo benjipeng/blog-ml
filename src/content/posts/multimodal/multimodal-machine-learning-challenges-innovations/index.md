@@ -12,6 +12,7 @@ categories: "machine-learning-theory"
 tags: ["multimodal", "machine-learning", "machine-learning-models"]
 url: "multimodal-machine-learning-challenges-innovations"
 cover: "./featured.jpg"
+coverAlt: "A dark teal scene of a speaker, phone, tablet, camera and microphone icon linked by dotted arcs"
 ---
 
 

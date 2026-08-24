@@ -12,6 +12,7 @@ categories: "machine-learning-theory"
 tags: ["large-language-models", "machine-learning", "machine-learning-models"]
 url: "/understanding-key-insights-and-trends-in-large-language-models"
 cover: "./featured.jpg"
+coverAlt: "A 3D toy scene with the letters LLM standing on a typewriter, surrounded by a clock, charts, books and notes"
 ---
 Large Language Models (LLMs) are revolutionizing natural language processing (NLP) by enabling machines to understand and generate human-like text _(or even beyond)_. In this article, we explore key LLMs, their capabilities, and their impact on various applications.
 

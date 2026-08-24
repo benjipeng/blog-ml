@@ -11,6 +11,7 @@ heroStyle: background
 categories: "machine-learning-theory"
 tags: ["object-detection", "machine-learning"]
 cover: "./featured.jpg"
+coverAlt: "A dim study lit by the glowing word OpenMMLab, with a telescope, books, a globe lamp and a brass bird"
 ---
 
 

@@ -12,6 +12,7 @@ categories: "machine-learning-theory"
 tags: ["computer-vision", "machine-learning", "machine-learning-models"]
 url: "an-in-depth-look-at-leading-computer-vision-models"
 cover: "./featured.jpg"
+coverAlt: "The words Computer Vision embossed on a metal disc, ringed by camera lenses and circuit boards"
 ---
 
 

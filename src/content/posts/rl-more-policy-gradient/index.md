@@ -9,6 +9,7 @@ showTableOfContents: true
 showHero: true
 heroStyle: background
 cover: "./featured.jpg"
+coverAlt: "Abstract layered waves shading from deep blue through green to a pink horizon"
 ---
 Policy Gradient is a method in reinforcement learning where the policy is directly optimized by estimating the gradient of the expected reward concerning the policy *parameters*.
 

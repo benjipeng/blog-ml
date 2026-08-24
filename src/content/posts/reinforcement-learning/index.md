@@ -10,6 +10,7 @@ showTableOfContents: true
 showHero: true
 heroStyle: background
 cover: "./featured.jpg"
+coverAlt: "A swirling blue and purple fluid painting with pink spheres and yellow trails, titled Reinforcement Learning"
 ---
 
 

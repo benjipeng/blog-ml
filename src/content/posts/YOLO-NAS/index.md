@@ -10,6 +10,7 @@ showHero: true
 heroStyle: background
 categories: "machine-learning-theory"
 cover: "./featured.jpg"
+coverAlt: "A city street where pedestrians and cars sit inside object detection boxes, labelled YOLO-NAS"
 ---
 
 
