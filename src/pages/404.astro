@@ -1,0 +1,43 @@
+---
+import Base from "../layouts/Base.astro";
+import { sectionMeta } from "../lib/content";
+
+// GitHub Pages serves this file for any path it cannot resolve, which until now
+// meant the platform's own grey default page: no navigation, no brand, no way
+// back. It is a dead end rather than a destination, so it stays out of the
+// index and spends what space it has on the ways back in.
+const sections = [sectionMeta.posts, sectionMeta.dev, sectionMeta.ciphers];
+---
+
+<Base
+  title="Not found · RenoCrypt"
+  description="No page exists at this address."
+  noindex
+>
+  <section class="mx-auto max-w-6xl px-5 py-12 sm:px-8 lg:py-16">
+    <header class="max-w-3xl">
+      <p class="eyebrow">&rsaquo;&nbsp;&nbsp;404</p>
+      <h1 class="mt-5 font-display text-[2.2rem] leading-tight sm:text-5xl">
+        Nothing at this address.
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
+        The page you asked for is not here. It may have moved, or the address
+        may have picked up a typo on the way. Everything published is still one
+        click away.
+      </p>
+    </header>
+
+    <nav class="mt-8 flex flex-wrap gap-2">
+      <a class="reno-chip" href="/">Home</a>
+      {
+        sections.map((section) => (
+          <a class="reno-chip" href={section.href}>
+            {section.label}
+          </a>
+        ))
+      }
+      <a class="reno-chip" href="/topics/">Topics</a>
+      <a class="reno-chip" href="/about/">About</a>
+    </nav>
+  </section>
+</Base>
