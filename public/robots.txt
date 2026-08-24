@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.renocrypt.com/sitemap-index.xml
+
+# A plain-text index of this site, written for language models:
+# https://www.renocrypt.com/llms.txt

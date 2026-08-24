@@ -78,10 +78,13 @@ export function articleDescription(entry: ArticleEntry) {
   );
 }
 
-export function readingTime(entry: ArticleEntry) {
+export function wordCount(entry: ArticleEntry) {
   const body = "body" in entry ? (entry.body ?? "") : "";
-  const words = body.trim().split(/\s+/).filter(Boolean).length;
-  return Math.max(1, Math.ceil(words / 225));
+  return body.trim().split(/\s+/).filter(Boolean).length;
+}
+
+export function readingTime(entry: ArticleEntry) {
+  return Math.max(1, Math.ceil(wordCount(entry) / 225));
 }
 
 export function articleTopics(entry: ArticleEntry) {
@@ -106,3 +109,54 @@ export function topicSlug(topic: string) {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 }
+
+/**
+ * A topic earns a page once a second piece joins it.
+ *
+ * A one-article topic page is a copy of that article's card and nothing else,
+ * so it competes with the article it points at and adds a thin page to the
+ * index. Below the threshold the label still shows on the article, it simply
+ * stops being a link to a page that says nothing new.
+ */
+export const MIN_TOPIC_ARTICLES = 2;
+
+export interface TopicBucket {
+  slug: string;
+  name: string;
+  entries: ArticleEntry[];
+}
+
+/** Every topic across the published set, most-written first, then alphabetical. */
+export async function getTopicBuckets(): Promise<TopicBucket[]> {
+  const articles = await getPublishedArticles();
+  const buckets = new Map<string, TopicBucket>();
+
+  for (const entry of articles) {
+    for (const topic of articleTopics(entry)) {
+      const slug = topicSlug(topic);
+      if (!slug) continue;
+      const bucket = buckets.get(slug) ?? { slug, name: topic, entries: [] };
+      bucket.entries.push(entry);
+      buckets.set(slug, bucket);
+    }
+  }
+
+  return [...buckets.values()].sort(
+    (a, b) => b.entries.length - a.entries.length || a.name.localeCompare(b.name)
+  );
+}
+
+/** The topics that have a page: the ones at or above the threshold. */
+export async function getIndexedTopics(): Promise<TopicBucket[]> {
+  const buckets = await getTopicBuckets();
+  return buckets.filter((bucket) => bucket.entries.length >= MIN_TOPIC_ARTICLES);
+}
+
+/** Slugs of the topics that have a page, for deciding what to link. */
+export async function getIndexedTopicSlugs(): Promise<Set<string>> {
+  return new Set((await getIndexedTopics()).map((bucket) => bucket.slug));
+}
+
+/** A topic reads as "machine learning", not "machine-learning". */
+export const topicLabel = (topic: string) => topic.replace(/-/g, " ");
+

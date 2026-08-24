@@ -1,6 +1,6 @@
 ---
 title: "Enhancing LLM Reasoning: Frameworks and Methodologies"
-description: "An exploration of key frameworks and techniques like Chain-of-Thought, Tree-of-Thoughts, and ReAct that enable Large Language Models to perform structured reasoning and problem-solving."
+description: "Chain-of-Thought, Tree-of-Thoughts, and ReAct compared as ways to give large language models structured reasoning rather than a single guess."
 date: 2025-02-03
 tags: ["large-language-models", "reasoning", "chain-of-thought", "tree-of-thoughts", "react", "prompt-engineering"]
 showAuthor: true

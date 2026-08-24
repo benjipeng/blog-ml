@@ -1,6 +1,6 @@
 ---
 title: "Trust Region Policy Optimization, Proximal Policy Optimization"
-description: "Off-policy algorithms uses past experiences, while Proximal Policy Optimization (PPO) and Trust Region Policy Optimization (TRPO) offer advanced strategies for stable policy evolution in reinforcement learning."
+description: "How TRPO and PPO keep policy updates stable in reinforcement learning, and where off-policy methods reuse past experience to get there."
 date: 2024-08-20
 series: ["Reinforcement Learning and Deep Reinforcement Learning"]
 series_order: 2

@@ -1,6 +1,6 @@
 ---
 title: "GPT, PaLM, GLM, LLaMA and beyond: Large language models in medicine"
-description: "Discover how Large Language Models (LLMs) like GPT, PaLM, GLM, and LLaMA are revolutionizing medicine. Explore applications, challenges, and the future of AI and ML in healthcare."
+description: "GPT, PaLM, GLM, and LLaMA applied to medicine: where they are already useful, where they fall short, and what the open challenges are."
 date: 2024-08-18
 # series: ["Image Generation"]
 # series_order: 1

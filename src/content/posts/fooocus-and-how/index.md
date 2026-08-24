@@ -1,6 +1,6 @@
 ---
 title: "Fooocus Fantasia: Navigating Generative Magic"
-description: "Dive deep into the world of Fooocus, where generative artistry meets innovative functionality"
+description: "A working guide to Fooocus, the image generation interface that hides the tuning, and how to run it locally or on Colab."
 date: 2023-09-19
 # series: ["Image Generation"]
 # series_order: 1

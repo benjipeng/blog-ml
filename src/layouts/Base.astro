@@ -1,6 +1,12 @@
 ---
 import "../styles/global.css";
 import Logo from "../components/Logo.astro";
+import { SITE, AUTHOR, absolute } from "../lib/site";
+
+export interface Crumb {
+  name: string;
+  href: string;
+}
 
 interface Props {
   title?: string;
@@ -10,33 +16,74 @@ interface Props {
   publishedTime?: string;
   modifiedTime?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** Keep a page out of the index while still following the links on it. */
+  noindex?: boolean;
+  /** The trail from home to this page, home itself excluded. */
+  breadcrumbs?: Crumb[];
 }
 
 const {
-  title = "RenoCrypt · Matrix Alchemy",
-  description = "Matrix Alchemy. Writing on machine learning, AI, and engineering by RenoCrypt.",
-  image = "/og.png",
+  title = SITE.title,
+  description = SITE.description,
+  image = SITE.ogImage,
   type = "website",
   publishedTime,
   modifiedTime,
   jsonLd,
+  noindex = false,
+  breadcrumbs = [],
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(image, Astro.site).href;
 const year = 2026;
 
+// One organization node, referenced by @id everywhere else, so a crawler reads
+// the site, the articles, and the publisher as one entity rather than three.
+const organization = {
+  "@type": "Organization",
+  "@id": `${SITE.url}/#organization`,
+  name: SITE.name,
+  alternateName: SITE.alternateName,
+  url: `${SITE.url}/`,
+  logo: {
+    "@type": "ImageObject",
+    url: absolute(SITE.logo),
+  },
+  sameAs: ["https://github.com/renocrypt", AUTHOR.url],
+};
+
 const siteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "RenoCrypt",
-  alternateName: "Matrix Alchemy",
-  url: Astro.site?.href,
-  description:
-    "Matrix Alchemy. Writing on machine learning, AI, and engineering.",
+  "@id": `${SITE.url}/#website`,
+  name: SITE.name,
+  alternateName: SITE.alternateName,
+  url: `${SITE.url}/`,
+  description: SITE.description,
+  inLanguage: SITE.language,
+  publisher: organization,
 };
+
+// The home page is the first rung on every trail, so pages pass only the rest.
+const breadcrumbSchema = breadcrumbs.length
+  ? {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [{ name: "Home", href: "/" }, ...breadcrumbs].map(
+        (crumb, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: crumb.name,
+          item: absolute(crumb.href),
+        })
+      ),
+    }
+  : null;
+
 const schemas = [
   siteSchema,
+  ...(breadcrumbSchema ? [breadcrumbSchema] : []),
   ...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : []),
 ];
 
@@ -63,6 +110,7 @@ const nav = [
     <link rel="canonical" href={canonical} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <meta property="og:type" content={type} />
     <meta property="og:site_name" content="RenoCrypt" />
     <meta property="og:locale" content="en_US" />
@@ -70,6 +118,7 @@ const nav = [
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={title} />
     {
       type === "article" && publishedTime && (
         <meta property="article:published_time" content={publishedTime} />

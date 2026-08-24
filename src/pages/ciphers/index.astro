@@ -10,15 +10,34 @@ import {
   readingTime,
   sectionMeta,
 } from "../../lib/content";
+import { articleItemList, collectionPage } from "../../lib/schema";
 import Avalanche from "../../components/art/Avalanche.astro";
 
 const articles = (
   await getCollection("ciphers", ({ data }) => !data.draft)
 ).sort(byDateDesc);
 const meta = sectionMeta.ciphers;
+
+// The section stands in the navigation because it is part of what this site is
+// about, but an empty list is not a page worth ranking. It rejoins the index by
+// itself as soon as the first piece lands.
+const isEmpty = articles.length === 0;
+
+const collectionSchema = collectionPage({
+  name: "Ciphers",
+  path: meta.href,
+  description: meta.description,
+  mainEntity: articleItemList(articles),
+});
 ---
 
-<Base title="Ciphers · RenoCrypt" description={meta.description}>
+<Base
+  title="Ciphers · RenoCrypt"
+  description={meta.description}
+  jsonLd={isEmpty ? undefined : collectionSchema}
+  breadcrumbs={[{ name: meta.label, href: meta.href }]}
+  noindex={isEmpty}
+>
   <section class="mx-auto max-w-6xl px-5 py-12 sm:px-8 lg:py-16">
     <div class="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
       <header class="max-w-3xl">

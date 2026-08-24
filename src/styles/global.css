@@ -525,7 +525,9 @@
       color 0.2s ease,
       background-color 0.2s ease;
   }
-  .reno-chip:hover {
+  /* Only a chip that leads somewhere lights up. A plain label that reacts to
+     the cursor reads as a link and disappoints when clicked. */
+  a.reno-chip:hover {
     border-color: var(--accent);
     color: var(--accent);
     background-color: color-mix(in oklab, var(--accent) 9%, transparent);

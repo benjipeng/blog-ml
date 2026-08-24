@@ -10,15 +10,28 @@ import {
   readingTime,
   sectionMeta,
 } from "../../lib/content";
+import { articleItemList, collectionPage } from "../../lib/schema";
 import SignalLattice from "../../components/art/SignalLattice.astro";
 
 const articles = (await getCollection("dev", ({ data }) => !data.draft)).sort(
   byDateDesc
 );
 const meta = sectionMeta.dev;
+
+const collectionSchema = collectionPage({
+  name: "Development",
+  path: meta.href,
+  description: meta.description,
+  mainEntity: articleItemList(articles),
+});
 ---
 
-<Base title="Development · RenoCrypt" description={meta.description}>
+<Base
+  title="Development · RenoCrypt"
+  description={meta.description}
+  jsonLd={collectionSchema}
+  breadcrumbs={[{ name: meta.label, href: meta.href }]}
+>
   <section class="mx-auto max-w-6xl px-5 py-12 sm:px-8 lg:py-16">
     <div class="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
       <header class="max-w-3xl">

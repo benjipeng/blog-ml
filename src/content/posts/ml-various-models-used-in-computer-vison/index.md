@@ -1,6 +1,6 @@
 ---
 title: "An in-Depth Look at Leading Computer Vision ML Models"
-description: "Discover top computer vision algorithms and techniques in machine learning, with thorough explanations and ongoing updates."
+description: "The leading computer vision model families in one place, from the architecture each uses to the task it is actually good at."
 date: 2024-07-20
 # series: ["Image Generation"]
 # series_order: 1

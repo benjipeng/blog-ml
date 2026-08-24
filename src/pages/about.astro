@@ -1,11 +1,38 @@
 ---
 import Base from "../layouts/Base.astro";
 import Aurora from "../components/art/Aurora.astro";
+import { SITE, AUTHOR, absolute } from "../lib/site";
+
+// The page that says who is behind the writing, declared as such. It is the
+// node the articles' author field resolves to.
+const profileSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  url: absolute("/about/"),
+  inLanguage: SITE.language,
+  isPartOf: { "@id": `${SITE.url}/#website` },
+  mainEntity: {
+    "@type": "Person",
+    name: AUTHOR.name,
+    url: AUTHOR.url,
+    description:
+      "Writes RenoCrypt. Background in physical chemistry and data science, which shapes a bias toward first principles, mathematical structure, and practical implementation.",
+    knowsAbout: [
+      "Machine learning",
+      "Large language models",
+      "AI systems engineering",
+      "Security research",
+    ],
+    worksFor: { "@id": `${SITE.url}/#organization` },
+  },
+};
 ---
 
 <Base
   title="About · RenoCrypt"
   description="About RenoCrypt, Matrix Alchemy: technical writing on machine learning, AI, and engineering."
+  jsonLd={profileSchema}
+  breadcrumbs={[{ name: "About", href: "/about/" }]}
 >
   <section class="mx-auto max-w-6xl px-5 py-12 sm:px-8 lg:py-16">
     <div class="grid items-center gap-8 lg:grid-cols-[1fr_0.8fr] lg:gap-12">

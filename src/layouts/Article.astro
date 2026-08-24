@@ -3,13 +3,18 @@ import { Image } from "astro:assets";
 import Base from "./Base.astro";
 import {
   articleDescription,
+  articlePath,
   articleTopics,
   formatDate,
+  getIndexedTopicSlugs,
   readingTime,
   sectionMeta,
+  topicLabel,
   topicSlug,
+  wordCount,
   type ArticleEntry,
 } from "../lib/content";
+import { SITE, AUTHOR } from "../lib/site";
 
 interface Heading {
   depth: number;
@@ -31,7 +36,13 @@ const showToc =
   entry.data.showTableOfContents !== false &&
   headings.some((heading) => heading.depth > 1 && heading.depth < 4);
 
-// SEO / GEO: article-specific Open Graph and BlogPosting structured data.
+// A topic is only a link when it has a page of its own. Below the threshold the
+// label still reads, it just does not promise a destination worth arriving at.
+const indexedTopics = await getIndexedTopicSlugs();
+
+// SEO / GEO: article-specific Open Graph and BlogPosting structured data. The
+// publisher and the site are referenced by @id rather than repeated, so a
+// crawler resolves them to the single nodes Base.astro declares.
 const coverSrc = entry.data.cover?.src;
 const ogImage = coverSrc ? new URL(coverSrc, Astro.site).href : undefined;
 const published = entry.data.date.toISOString();
@@ -40,16 +51,27 @@ const articleUrl = new URL(Astro.url.pathname, Astro.site).href;
 const blogPosting = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
+  "@id": `${articleUrl}#article`,
   headline: entry.data.title,
   description: articleDescription(entry),
+  url: articleUrl,
   datePublished: published,
   dateModified: modified,
-  author: { "@type": "Person", name: "Benji" },
-  publisher: { "@type": "Organization", name: "RenoCrypt" },
-  mainEntityOfPage: articleUrl,
+  inLanguage: SITE.language,
+  wordCount: wordCount(entry),
+  articleSection: meta.label,
+  author: { "@type": "Person", name: AUTHOR.name, url: AUTHOR.url },
+  publisher: { "@id": `${SITE.url}/#organization` },
+  isPartOf: { "@id": `${SITE.url}/#website` },
+  mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
   ...(ogImage ? { image: ogImage } : {}),
-  ...(topics.length ? { keywords: topics.join(", ") } : {}),
+  ...(topics.length ? { keywords: topics.map(topicLabel).join(", ") } : {}),
 };
+
+const breadcrumbs = [
+  { name: meta.label, href: meta.href },
+  { name: entry.data.title, href: articlePath(entry) },
+];
 ---
 
 <Base
@@ -60,6 +82,7 @@ const blogPosting = {
   publishedTime={published}
   modifiedTime={modified}
   jsonLd={blogPosting}
+  breadcrumbs={breadcrumbs}
 >
   <article>
     {
@@ -67,7 +90,7 @@ const blogPosting = {
         <header class="article-hero">
           <Image
             src={entry.data.cover}
-            alt=""
+            alt={entry.data.coverAlt || ""}
             class="article-hero-image"
             loading="eager"
           />
@@ -90,11 +113,15 @@ const blogPosting = {
             </div>
             {topics.length > 0 && (
               <div class="mt-5 flex flex-wrap gap-2">
-                {topics.map((topic) => (
-                  <a class="reno-chip" href={`/topics/${topicSlug(topic)}/`}>
-                    {topic}
-                  </a>
-                ))}
+                {topics.map((topic) =>
+                  indexedTopics.has(topicSlug(topic)) ? (
+                    <a class="reno-chip" href={`/topics/${topicSlug(topic)}/`}>
+                      {topic}
+                    </a>
+                  ) : (
+                    <span class="reno-chip">{topic}</span>
+                  )
+                )}
               </div>
             )}
           </div>
@@ -120,11 +147,15 @@ const blogPosting = {
             </div>
             {topics.length > 0 && (
               <div class="mt-5 flex flex-wrap gap-2">
-                {topics.map((topic) => (
-                  <a class="reno-chip" href={`/topics/${topicSlug(topic)}/`}>
-                    {topic}
-                  </a>
-                ))}
+                {topics.map((topic) =>
+                  indexedTopics.has(topicSlug(topic)) ? (
+                    <a class="reno-chip" href={`/topics/${topicSlug(topic)}/`}>
+                      {topic}
+                    </a>
+                  ) : (
+                    <span class="reno-chip">{topic}</span>
+                  )
+                )}
               </div>
             )}
           </div>

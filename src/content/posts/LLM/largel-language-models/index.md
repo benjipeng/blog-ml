@@ -1,6 +1,6 @@
 ---
 title: "Understanding Key Insights and Trends in Large Language Models"
-description: "Learn about how large language models (LLMs) has been made and evolved by looking into its key insights and trends"
+description: "How large language models are built and how they have evolved, traced through the key insights and trends behind each generation."
 date: 2024-08-15
 # series: ["Image Generation"]
 # series_order: 1

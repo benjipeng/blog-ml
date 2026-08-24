@@ -1,8 +1,8 @@
 ---
 import {
-  articleTopics,
-  getPublishedArticles,
-  topicSlug,
+  articlePath,
+  getTopicBuckets,
+  MIN_TOPIC_ARTICLES,
 } from "../../lib/content";
 import Moved from "../../components/Moved.astro";
 
@@ -21,23 +21,28 @@ export async function getStaticPaths() {
     "large-language-model": "large-language-models",
   };
 
-  const articles = await getPublishedArticles();
-  const slugs = new Set<string>();
-  for (const entry of articles) {
-    for (const topic of articleTopics(entry)) {
-      const slug = topicSlug(topic);
-      if (slug) slugs.add(slug);
-    }
-  }
+  // Where a topic leads now: its own page when it has one, otherwise the single
+  // piece it names. Resolving it here means an old tag URL forwards straight to
+  // a destination rather than to another forward.
+  const buckets = await getTopicBuckets();
+  const destinations = new Map(
+    buckets.map((bucket) => [
+      bucket.slug,
+      bucket.entries.length >= MIN_TOPIC_ARTICLES
+        ? `/topics/${bucket.slug}/`
+        : articlePath(bucket.entries[0]),
+    ])
+  );
 
-  const paths = [...slugs].map((slug) => ({
+  const paths = [...destinations].map(([slug, to]) => ({
     params: { tag: slug },
-    props: { to: `/topics/${slug}/` },
+    props: { to },
   }));
 
   for (const [from, to] of Object.entries(RENAMED)) {
-    if (slugs.has(to) && !slugs.has(from)) {
-      paths.push({ params: { tag: from }, props: { to: `/topics/${to}/` } });
+    const destination = destinations.get(to);
+    if (destination && !destinations.has(from)) {
+      paths.push({ params: { tag: from }, props: { to: destination } });
     }
   }
 

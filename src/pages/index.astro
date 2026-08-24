@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import HeroSigil from "../components/HeroSigil.astro";
+import { SITE } from "../lib/site";
 
 // Rotating hero headlines. Three complete thoughts in the site's voice —
 // what it is, why it exists, how it works — each plain enough to land on
@@ -11,7 +12,17 @@ import HeroSigil from "../components/HeroSigil.astro";
 // Voice: the authority claim. Every headline is a credibility statement,
 // every lede says what backs it up. The header carries the name; the copy
 // never repeats it.
-const heroLines = [
+// One word of a headline. The colour flags are optional and mutually exclusive
+// in practice, so they are declared rather than inferred from the first line,
+// which would otherwise narrow the type to whatever line one happens to use.
+type HeroWord = {
+  w: string;
+  accent?: boolean;
+  gold?: boolean;
+  dot?: boolean;
+};
+
+const heroLines: HeroWord[][] = [
   [
     { w: "Technical" },
     { w: "depth" },
@@ -40,9 +51,9 @@ const heroLines = [
 // Each headline's companion lede rotates with it and continues its thought.
 // Kept to one measure so every variant wraps alike and the CTAs never move.
 const heroLedes = [
-  "Long-form writing on machine learning, systems, and security — precise enough to cite, practical enough to ship.",
+  "Long-form writing on machine learning, systems, and security, precise enough to cite and practical enough to ship.",
   "Derivations, benchmarks, and working code are part of every piece, so results can be verified, not just quoted.",
-  "Model internals, systems engineering, and security research as one body of work — consistent from the mathematics to the deployed system.",
+  "Model internals, systems engineering, and security research as one body of work, consistent from the mathematics to the deployed system.",
 ];
 
 // The three threads, all standing: models, machines, ciphers. Math is
@@ -76,7 +87,7 @@ const threads = [
 ];
 ---
 
-<Base>
+<Base title={SITE.homeTitle} description={SITE.homeDescription}>
   <!-- Hero: the thesis -->
   <section class="hero-wash relative overflow-hidden">
     <div

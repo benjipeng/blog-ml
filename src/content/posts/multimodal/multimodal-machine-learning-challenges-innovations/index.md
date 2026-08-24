@@ -1,6 +1,6 @@
 ---
 title: "Power of Multimodal Machine Learning: Challenges, Innovations, and Future Directions"
-description: "Learn about the transformative impact of multimodal machine learning, highlighting key challenges, recent innovations, and the future of machine learning integration and AI development across diverse data modalities"
+description: "What makes multimodal machine learning hard, which recent innovations moved it forward, and where integration across modalities is heading."
 date: 2024-08-17
 # series: ["Image Generation"]
 # series_order: 1

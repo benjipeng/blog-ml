@@ -1,6 +1,6 @@
 ---
 title: "YOLO and object detection"
-description: "The YOLO (You Only Look Once) series of fast object detection models has seen significant improvements from YOLOv1 and beyond"
+description: "How the YOLO object detection series changed from v1 onward, and what each version actually improved over the one before it."
 date: 2024-05-15
 showAuthor: false
 showTableOfContents: true

@@ -1,6 +1,6 @@
 ---
 title: "What is Deep Reinforcement Learning (RL)"
-description: "Here we introduce language and notation used to discuss RL and explain what RL do"
+description: "The language and notation of reinforcement learning, and what an RL agent actually does, introduced from first principles."
 date: 2024-08-09
 tags: ["machine-learning", "reinforcement-learning", "theory"]
 series: ["Reinforcement Learning and Deep Reinforcement Learning"]

@@ -1,6 +1,6 @@
 ---
-title: "Behind Generative Models [In Progress ]"
-description: "Explore the mechanics behind diffusion-based models like Mid-journey, DALL-E, and Stable Diffusion, which have revolutionized machine learning-based image and text generation"
+title: "Behind Generative Models [In Progress]"
+description: "The mechanics behind diffusion models, and what separates DALL-E, Midjourney, and Stable Diffusion once you look past the interface."
 date: 2023-09-18
 # series: ["Deep Reinforcement Learning"]
 # series_order: 1

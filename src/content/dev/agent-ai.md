@@ -1,6 +1,6 @@
 ---
 title: "Production-Ready AI Agents: Architectures, Frameworks, and Beyond"
-description: "A comprehensive technical analysis of production-grade AI agent systems, exploring key frameworks, orchestration patterns, and deployment strategies for building reliable autonomous systems at scale."
+description: "Production-grade AI agent systems: the frameworks, orchestration patterns, and deployment strategies behind autonomous systems that hold up at scale."
 date: 2025-02-04
 tags: ["ai-agents", "autonomous-systems", "langchain", "autogen", "crewai", "rag", "orchestration", "production-ml", "function-calling", "system-design"]
 showAuthor: true

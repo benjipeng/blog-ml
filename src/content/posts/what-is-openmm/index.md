@@ -1,6 +1,6 @@
 ---
 title: "What is OpenMMLab and how it is used in computer vision"
-description: "Navigate DevOps, MLOps, and Kaizen in AWS, Azure, and GCP"
+description: "OpenMMLab as a computer vision platform: what MMDetection, MMSegmentation, MMPose, MMOCR, and MMDeploy each cover, and where they fit in a workflow."
 date: 2024-05-20
 # series: ["Image Generation"]
 # series_order: 1

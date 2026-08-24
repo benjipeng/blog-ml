@@ -1,6 +1,6 @@
 ---
 title: "Yet another gentle intro to the YOLO-NAS model"
-description: "Navigate DevOps, MLOps, and Kaizen in AWS, Azure, and GCP"
+description: "How Deci AI's YOLO-NAS combines neural architecture search with YOLO object detection, from its multi-phase training to reading the model's output."
 date: 2024-04-29
 # series: ["Image Generation"]
 # series_order: 1

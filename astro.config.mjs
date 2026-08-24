@@ -4,10 +4,13 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import sitemapAlign from "./tools/sitemap-align.mjs";
+
+const site = "https://www.renocrypt.com";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://www.renocrypt.com",
+  site,
   trailingSlash: "ignore",
   vite: {
     plugins: [tailwindcss()],
@@ -21,6 +24,10 @@ export default defineConfig({
       filter: (page) =>
         !/\/(tags|categories)(\/|$)/.test(new URL(page).pathname),
     }),
+    // Reads the built pages back and reconciles the sitemap with what they
+    // declare: lastmod from each article, and no entry for a page that asked
+    // not to be indexed. Must follow sitemap(), which it rewrites.
+    sitemapAlign({ site }),
   ],
   markdown: {
     remarkPlugins: [remarkMath],
